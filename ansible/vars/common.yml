@@ -89,8 +89,8 @@ win10_username: azureuser
 
 win10_offer: "Windows-10"
 win10_publisher: "MicrosoftWindowsDesktop"
-win10_sku: "rs5-pro"
-win10_version: "latest"
+win10_sku: "win10-21h2-pro"
+win10_version: "19044.1766.220609"
 
 win10_blob: "https://{{ storage_account_name }}.blob.core.windows.net/{{ storage_container }}/{{ win10_ckp_smartconsole }}"
 win10_ckp_smartconsole: SmartConsole.exe
