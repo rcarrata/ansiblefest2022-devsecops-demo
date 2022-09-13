@@ -141,3 +141,4 @@ ansible/files/vcredist_2011_x86.exe
 ansible/files/vcredist_2017_x86.exe
 ansible/files/vcredist_2017_x86.exe
 inventory/hosts
+

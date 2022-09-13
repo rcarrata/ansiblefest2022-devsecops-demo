@@ -32,14 +32,14 @@
     address_prefix: "{{ external_subnet_ip }}"
     virtual_network: "{{ main_vnet_name }}"
 
-#- name: Add Azure BlobStorage Account
-#  azure_rm_storageaccount:
-#    resource_group: "{{ main_resgroup }}"
-#    name: "{{ storage_account_name }}"
-#    kind: BlobStorage
-#    type: Standard_LRS
-#    access_tier: Hot
-#    tags:
-#      name: ansiblefest
-#      delete: on-exit
+- name: Add Azure BlobStorage Account
+  azure_rm_storageaccount:
+    resource_group: "{{ main_resgroup }}"
+    name: "{{ storage_account_name }}"
+    kind: BlobStorage
+    type: Standard_LRS
+    access_tier: Hot
+    tags:
+      name: ansiblefest
+      delete: on-exit
 
