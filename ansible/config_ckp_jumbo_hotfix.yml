@@ -1,11 +1,12 @@
 ---
 
-- hosts: ckp-sms
+- hosts: ckpsms
   vars_files:
     - vault/vault.yml
     - vars/common.yml
     - "vars/{{ lab_name }}.yml"
   gather_facts: False
+  connection: httpapi
   tasks:
     - name: '[ANSIBLEFEST] Config Checkpoint Jumbo Hotfix in SMS'
       include_role:

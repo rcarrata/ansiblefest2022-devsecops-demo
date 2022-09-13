@@ -1,7 +1,7 @@
 ---
 
 - name: "Add Host Win 10"
-  cp_mgmt_host:
+  check_point.mgmt.cp_mgmt_host:
     color: blue
     name: "{{ win10_vm_name }}"
     ip_address: "{{ win10_private_ip }}"
@@ -9,7 +9,7 @@
     auto_publish_session: yes
 
 - name: "Add Host RHEL1"
-  cp_mgmt_host:
+  check_point.mgmt.cp_mgmt_host:
     color: red
     name: "{{ item.0.vm_name }}"
     ip_address: "{{ item.0.private_ip }}"
@@ -19,7 +19,7 @@
     - "{{ rhel }}"
 
 - name: "Add Host RHEL2"
-  cp_mgmt_host:
+  check_point.mgmt.cp_mgmt_host:
     color: red
     name: "{{ item.1.vm_name }}"
     ip_address: "{{ item.1.private_ip }}"
@@ -29,7 +29,7 @@
     - "{{ rhel }}"
 
 - name: "Add Host Tower"
-  cp_mgmt_host:
+  check_point.mgmt.cp_mgmt_host:
     color: red
     name: "{{ tower_vm_name }}"
     ip_address: "{{ tower_private_ip }}"
@@ -37,7 +37,7 @@
     auto_publish_session: yes
 
 - name: "Add network internal dmz"
-  cp_mgmt_network:
+  check_point.mgmt.cp_mgmt_network:
     color: dark green
     name: "{{ internal_subnet_dmz_name }}"
     state: present

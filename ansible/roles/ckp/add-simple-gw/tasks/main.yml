@@ -14,6 +14,12 @@
     checkpoint_api_fingerprint: "{{ api_fingerprint.stdout }}"
   when: checkpoint_api_fingerprint is not defined
 
+# - name: add-simple-gateway
+#   cp_mgmt_simple_gateway:
+#     ip_address: 192.0.2.1
+#     name: gw1
+#     state: present
+
 - name: "login"
   check_point_mgmt:
     command: login

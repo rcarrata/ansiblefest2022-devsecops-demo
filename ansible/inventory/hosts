@@ -12,20 +12,38 @@ ansible_ssh_extra_args="-o StrictHostKeyChecking=no"
 ansible-tower
 
 [w10]
-win10 ansible_host="172.16.1.6"
+20.216.171.223 ansible_host="20.216.171.223"
 
-#[w10:vars]
+[w10:vars]
+ansible_password = "{{ password }}"
 #ansible_ssh_user="azureuser"
 #ansible_ssh_pass="xxxxx" -> Vault
 #ansible_connection="winrm"
 #ansible_winrm_server_cert_validation=ignore
 #ansible_ssh_port=5986
 
-[ckp-sms]
-ckp-sms ansible_host="172.16.1.9"
+[ckpsms]
+ckpsms ansible_host="20.111.56.6"
 
-[ckp-gw]
-ckp-gw ansible_host="172.16.1.9"
+[ckpsms:vars]
+ansible_httpapi_use_ssl=True
+ansible_httpapi_validate_certs=False
+#ansible_network_os="checkpoint"
+ansible_user="admin"
+ansible_password="{{ adminPasswordsms }}"
+ansible_network_os=check_point.mgmt.checkpoint
+
+
+[ckpgw]
+ckpgw
+
+[ckpgw:vars]
+ansible_httpapi_use_ssl=True
+ansible_httpapi_validate_certs=False
+#ansible_network_os="checkpoint"
+ansible_user="admin"
+ansible_password="{{ adminPasswordsms }}"
+ansible_network_os=check_point.mgmt.checkpoint
 
 [internal]
 tower ansible_host="172.16.1.5"
@@ -35,12 +53,6 @@ rhel2 ansible_host="172.16.1.8"
 ckp-sms ansible_host="172.16.1.9"
 ckp-gw ansible_host="172.16.1.253"
 
-#[ckp-sms:vars]
-#ansible_httpapi_use_ssl=True
-#ansible_httpapi_validate_certs=False
-#ansible_network_os="checkpoint"
-#ansible_user="admin"
-#ansible_password="xxxxx" -> Vault
 
 [rhel]
 rhel1 ansible_host="172.16.1.7"

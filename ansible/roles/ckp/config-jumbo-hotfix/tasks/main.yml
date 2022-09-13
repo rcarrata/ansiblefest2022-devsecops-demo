@@ -14,7 +14,7 @@
     jhf_uncompress.stdout.find("CPda-00-00.i386.rpm") != -1
 
 - name: "Install the CPUSE Agent RPM"
-  command: chdir=/tmp/ rpm -Uhv --force CPda-00-00.i386.rpm
+  command: chdir=/tmp/ rpm -Uhv --force --nodeps CPda-00-00.i386.rpm
   register: cpuse_agent_reg
   delay: 1
   until: >

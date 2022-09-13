@@ -140,5 +140,6 @@ ansible/files/vcredist_2010_x86.exe
 ansible/files/vcredist_2011_x86.exe
 ansible/files/vcredist_2017_x86.exe
 ansible/files/vcredist_2017_x86.exe
+ansible/files/DeploymentAgent_000001959_1.tgz
 inventory/hosts
 

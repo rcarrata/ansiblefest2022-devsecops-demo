@@ -58,7 +58,8 @@ gw_resgroup: "ansiblefest_{{ lab_name }}_gw_rg"
 cloudGuardVersiongw: "R80.30 - Bring Your Own License"
 #adminPasswordgw: stored in vault
 authenticationTypegw: "password"
-vmNamegw: "chkpgwansiblefest{{ lab_name }}"
+#vmNamegw: "chkpgwansiblefest{{ lab_name }}" TO REVERT
+vmNamegw: "add-simple-gateway"
 vmSizegw: "Standard_D3_v2"
 #sicKeyGW: stored in vault
 virtualNetworkNamegw: "{{ main_vnet_name }}"

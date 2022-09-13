@@ -1,7 +1,7 @@
 ---
 
 - name: "Add AnsibleFest Package"
-  cp_mgmt_package:
+  check_point.mgmt.cp_mgmt_package:
     color: red
     comments: Ansible_Fest_Package
     name: Ansible_Fest_Package
@@ -11,14 +11,14 @@
     auto_publish_session: yes
 
 - name: "Set blade for Access_layer_Ansible_fest"
-  cp_mgmt_access_layer:
+  check_point.mgmt.cp_mgmt_access_layer:
     applications_and_url_filtering: true
     name: Ansible_Fest_Package Network
     state: present
     auto_publish_session: yes
 
 - name: "Add rule Do Not Log"
-  cp_mgmt_access_rule:
+  check_point.mgmt.cp_mgmt_access_rule:
     layer: Ansible_Fest_Package Network
     name: Do Not Log
     position: 1
@@ -34,7 +34,7 @@
     auto_publish_session: yes
 
 - name: "Add rule Management"
-  cp_mgmt_access_rule:
+  check_point.mgmt.cp_mgmt_access_rule:
     layer: Ansible_Fest_Package Network
     name: Management
     position: 2
@@ -58,7 +58,7 @@
     - "{{ rhel }}"
 
 - name: "Add rule Stealth"
-  cp_mgmt_access_rule:
+  check_point.mgmt.cp_mgmt_access_rule:
     layer: Ansible_Fest_Package Network
     name: Stealth
     position: 3
@@ -74,7 +74,7 @@
     auto_publish_session: yes
 
 - name: "Add rule DMZ"
-  cp_mgmt_access_rule:
+  check_point.mgmt.cp_mgmt_access_rule:
     layer: Ansible_Fest_Package Network
     name: DMZ
     position: 4
@@ -96,7 +96,7 @@
     - "{{ rhel }}"
 
 - name: "Add rule Outgoing"
-  cp_mgmt_access_rule:
+  check_point.mgmt.cp_mgmt_access_rule:
     layer: Ansible_Fest_Package Network
     name: Outgoing
     position: 5
@@ -122,13 +122,13 @@
     - "{{ rhel }}"
 
 - name: Install Policy Access Control
-  cp_mgmt_install_policy:
+  check_point.mgmt.cp_mgmt_install_policy:
     access: true
     policy_package: Ansible_Fest_Package
     threat_prevention: false
 
 - name: Install Policy Threat Prevention
-  cp_mgmt_install_policy:
+  check_point.mgmt.cp_mgmt_install_policy:
     access: false
     policy_package: Ansible_Fest_Package
     threat_prevention: true

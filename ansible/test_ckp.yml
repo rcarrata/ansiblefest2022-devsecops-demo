@@ -1,0 +1,25 @@
+- name: playbook name
+  hosts: ckpsms
+  connection: httpapi
+  vars_files:
+    - vault/vault.yml
+    - vars/common.yml
+    - "vars/{{ lab_name }}.yml"
+  tasks:
+    - name: task to have network
+      check_point.mgmt.cp_mgmt_network:
+        name: "network name"
+        subnet: "4.1.76.0"
+        mask_length: 24
+        auto_publish_session: true
+
+      vars: 
+        ansible_checkpoint_domain: "SMC User"
+
+    - name: "Add Host Win 10"
+      check_point.mgmt.cp_mgmt_host:
+        color: blue
+        name: "{{ win10_vm_name }}"
+        ip_address: "{{ win10_private_ip }}"
+        state: present
+        auto_publish_session: yes

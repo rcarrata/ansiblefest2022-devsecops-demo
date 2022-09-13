@@ -1,10 +1,11 @@
 ---
 
-- hosts: ckp-sms
+- hosts: ckpsms
   vars_files:
     - vault/vault.yml
     - vars/common.yml
     - "vars/{{ lab_name }}.yml"
+  connection: httpapi
   gather_facts: False
   tasks:
     - name: '[ANSIBLEFEST] Config Add Simple GW to Checkpoint'
