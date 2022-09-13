@@ -215,18 +215,18 @@ ansible_tower:
     - name: "ckp-gw"
       variables: "---\\nansible_host: {{ Subnet2StartAddressgw }} \\nansible_user: admin"
   projects:
-  - name: "ansiblefest2020-project"
+  - name: "ansiblefest2022-project"
     description: "Ansible Fest 2020 Repo"
     scm_type: "git"
-    scm_url: "https://github.com/rcarrata/ansiblefest2020-secdemo.git"
-    scm_branch: "master"
+    scm_url: "https://github.com/rcarrata/ansiblefest2022-devsecops-demo.git"
+    scm_branch: "main"
     organization: "Default"
     #credential: "5"
   job_templates:
   - name: "Lab1_config_tower_objects"
     description: "Lab1 Config Tower Objects for Cybersec lab"
     inventory: "ansible-tower"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/configure_tower.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -235,7 +235,7 @@ ansible_tower:
   - name: "Lab2_deploy_win10_vm"
     description: "deploy_win10_vm"
     inventory: "ansible-tower"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/deploy_win10_vm.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -244,7 +244,7 @@ ansible_tower:
   - name: "Lab2_deploy_ckp_gw"
     description: "lab2_deploy_ckp_gw"
     inventory: "ansible-tower"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/deploy_ckp_gw.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -253,7 +253,7 @@ ansible_tower:
   - name: "Lab2_deploy_ckp_sms"
     description: "lab2_deploy_ckp_sms"
     inventory: "ansible-tower"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/deploy_ckp_sms.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -262,7 +262,7 @@ ansible_tower:
   - name: "Lab2_deploy_rhel_vm"
     description: "lab2_deploy_rhel_vm"
     inventory: "ansible-tower"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/deploy_rhel_vm.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -272,7 +272,7 @@ ansible_tower:
   - name: "Lab3_config_win10_vm"
     description: "Lab3_config_win10_vm"
     inventory: "w10"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/config_win10_vm.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -281,7 +281,7 @@ ansible_tower:
   - name: "Lab3_config_ckp_jumbo_hotfix"
     description: "lab3_config_ckp_jumbo_hotfix"
     inventory: "ckp-sms"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/config_ckp_jumbo_hotfix.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -290,7 +290,7 @@ ansible_tower:
   - name: "Lab3_config_ckp_setting_api_sms"
     description: "lab4_config_ckp_setting_api_sms"
     inventory: "ckp-sms"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/config_ckp_setting_api_sms.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -299,7 +299,7 @@ ansible_tower:
   - name: "Lab3_config_add_simple_gw"
     description: "Lab4_config_add_simple_gw"
     inventory: "ckp-sms"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/config_ckp_add_simple_gw.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -308,7 +308,7 @@ ansible_tower:
   - name: "Lab3_config_ckp_add_route_default_gw"
     description: "Lab3_config_ckp_add_route_default_gw"
     inventory: "ckp-gw"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/config_ckp_add_route_default_gw.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -317,7 +317,7 @@ ansible_tower:
   - name: "Lab4_config_ckp_sec_hosts"
     description: "Lab4_config_ckp_sec_hosts"
     inventory: "ckp-sms"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/config_ckp_sec_hosts.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -326,7 +326,7 @@ ansible_tower:
   - name: "Lab4_config_ckp_sec_policies"
     description: "Lab4_config_ckp_sec_policies"
     inventory: "ckp-sms"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/config_ckp_sec_policies.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -335,7 +335,7 @@ ansible_tower:
   - name: "Lab4_app_deploy_jboss_server"
     description: "Lab5_app_deploy_jboss_server"
     inventory: "rhel1"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/app_deploy_jboss.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -344,7 +344,7 @@ ansible_tower:
   - name: "Lab4_deploy_k8s"
     description: "Lab5_deploy_k8s"
     inventory: "rhel2"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/app_deploy_k8s.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -353,7 +353,7 @@ ansible_tower:
   - name: "Lab4_deploy_app_ticketmonster"
     description: "Lab4_deploy_app_ticketmonster"
     inventory: "rhel1"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/app_deploy_app_ticket.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -362,7 +362,7 @@ ansible_tower:
   - name: "Lab4_app_deploy_etherpad_k8s"
     description: "Lab4_app_deploy_etherpad_k8s"
     inventory: "rhel2"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/app_deploy_etherpad_k8s.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -371,7 +371,7 @@ ansible_tower:
   - name: "Lab4_config_azure_route_table_for_apps"
     description: "Lab4_config_azure_route_table_for_apps"
     inventory: "ansible-tower"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/config_ckp_add_route_table.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -381,7 +381,7 @@ ansible_tower:
   - name: "Lab5_deploy_nat_rules_for_apps"
     description: "Lab5_deploy_nat_rules_for_apps"
     inventory: "ckp-sms"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/config_ckp_nat_rules.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
@@ -390,7 +390,7 @@ ansible_tower:
   - name: "Lab99_re_deploy_ckp_sms"
     description: "Lab99_re_deploy_ckp_sms"
     inventory: "ansible-tower"
-    project: "ansiblefest2020-project"
+    project: "ansiblefest2022-project"
     playbook: "ansible/re_deploy_ckp_sms.yml"
     extra_vars: "---\\nlab_name: {{ lab_name }}\\n"
     credentials:
