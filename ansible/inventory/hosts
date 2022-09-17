@@ -28,7 +28,6 @@ ckp-sms ansible_host="20.111.56.6"
 [ckp-sms:vars]
 ansible_httpapi_use_ssl=True
 ansible_httpapi_validate_certs=False
-#ansible_network_os="checkpoint"
 ansible_user="admin"
 ansible_password="{{ adminPasswordsms }}"
 ansible_network_os=check_point.mgmt.checkpoint
