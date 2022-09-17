@@ -233,7 +233,7 @@ scm_credentials:
     org: Default
     type: "Machine"
     inputs:
-      username: "{{ tower_username }}"
+      username: "admin"
       password: "{{ password }}"
       become_method: sudo
   - name: "VMGW"
@@ -385,7 +385,7 @@ scm_jobtemplates:
     - "VMKey"
     - "Vault"
     ask_variables_on_launch: no
-    execution_environment: "AnsibleFest Execution Environment"
+    execution_environment: "Ansible Engine 2.9 execution environment"
   - name: "Lab4_config_ckp_sec_policies"
     desc: "Lab4_config_ckp_sec_policies"
     org: Default
@@ -397,7 +397,7 @@ scm_jobtemplates:
     - "VMKey"
     - "Vault"
     ask_variables_on_launch: no
-    execution_environment: "AnsibleFest Execution Environment"
+    execution_environment: "Ansible Engine 2.9 execution environment"
   - name: "Lab4_app_deploy_jboss_server"
     desc: "Lab5_app_deploy_jboss_server"
     org: Default
@@ -470,7 +470,7 @@ scm_jobtemplates:
     - "VMKey"
     - "Vault"
     ask_variables_on_launch: no
-    execution_environment: "AnsibleFest Execution Environment"
+    execution_environment: "Ansible Engine 2.9 execution environment"
   - name: "Lab99_re_deploy_ckp_sms"
     desc: "Lab99_re_deploy_ckp_sms"
     org: Default
@@ -492,7 +492,7 @@ scm_workflowjobtemplates:
     org: Default
     inv: ""
     steps:
-      - identifier: "node101"
+      - identifier: "Lab2_deploy_win10_vm"
         all_parents_must_converge: false
         unified_job_template: 
           organization:
@@ -505,7 +505,7 @@ scm_workflowjobtemplates:
           failure_nodes: []
           always_nodes: []
           credentials: []
-      - identifier: "node102"
+      - identifier: "Lab2_deploy_ckp_sms"
         all_parents_must_converge: false
         unified_job_template: 
           organization:
@@ -515,11 +515,11 @@ scm_workflowjobtemplates:
         credentials: []
         related:
           success_nodes:
-            - identifier: node202
+            - identifier: Lab2_deploy_ckp_gw
           failure_nodes: []
           always_nodes: []
           credentials: []
-      - identifier: "node201"
+      - identifier: "Lab2_deploy_rhel_vm"
         all_parents_must_converge: false
         unified_job_template: 
           organization:
@@ -529,11 +529,11 @@ scm_workflowjobtemplates:
         credentials: []
         related:
           success_nodes:
-            - identifier: node202
+            - identifier: Lab2_deploy_ckp_gw
           failure_nodes: []
           always_nodes: []
           credentials: []
-      - identifier: "node202"
+      - identifier: "Lab2_deploy_ckp_gw"
         all_parents_must_converge: false
         unified_job_template: 
           organization:
@@ -551,7 +551,7 @@ scm_workflowjobtemplates:
     org: Default
     inv: ""
     steps:
-      - identifier: "node101"
+      - identifier: "Lab3_config_ckp_jumbo_hotfix"
         all_parents_must_converge: false
         unified_job_template: 
           organization:
@@ -561,11 +561,11 @@ scm_workflowjobtemplates:
         credentials: []
         related:
           success_nodes:
-            - identifier: node201
+            - identifier: Lab3_config_ckp_setting_api_sms
           failure_nodes: []
           always_nodes: []
           credentials: []
-      - identifier: "node201"
+      - identifier: "Lab3_config_ckp_setting_api_sms"
         all_parents_must_converge: false
         unified_job_template: 
           organization:
@@ -583,7 +583,7 @@ scm_workflowjobtemplates:
     org: Default
     inv: ""
     steps:
-      - identifier: "node101"
+      - identifier: "Lab3_config_add_simple_gw"
         all_parents_must_converge: false
         unified_job_template:
           organization:
@@ -593,11 +593,11 @@ scm_workflowjobtemplates:
         credentials: []
         related:
           success_nodes:
-            - identifier: node201
+            - identifier: Lab3_config_ckp_add_route_default_gw
           failure_nodes: []
           always_nodes: []
           credentials: []
-      - identifier: "node201"
+      - identifier: "Lab3_config_ckp_add_route_default_gw"
         all_parents_must_converge: false
         unified_job_template: 
           organization:
@@ -615,7 +615,7 @@ scm_workflowjobtemplates:
     org: Default
     inv: ""
     steps:
-      - identifier: "node101"
+      - identifier: "Lab4_app_deploy_jboss_server"
         all_parents_must_converge: false
         unified_job_template: 
           organization:
@@ -625,11 +625,11 @@ scm_workflowjobtemplates:
         credentials: []
         related:
           success_nodes:
-            - identifier: node201
+            - identifier: Lab4_deploy_app_ticketmonster
           failure_nodes: []
           always_nodes: []
           credentials: []
-      - identifier: "node201"
+      - identifier: "Lab4_deploy_app_ticketmonster"
         all_parents_must_converge: false
         unified_job_template: 
           organization:
@@ -642,7 +642,7 @@ scm_workflowjobtemplates:
           failure_nodes: []
           always_nodes: []
           credentials: []
-      - identifier: "node102"
+      - identifier: "Lab4_deploy_k8s"
         all_parents_must_converge: false
         unified_job_template: 
           organization:
@@ -652,11 +652,11 @@ scm_workflowjobtemplates:
         credentials: []
         related:
           success_nodes:
-            - identifier: node202
+            - identifier: Lab4_app_deploy_etherpad_k8s
           failure_nodes: []
           always_nodes: []
           credentials: []
-      - identifier: "node202"
+      - identifier: "Lab4_app_deploy_etherpad_k8s"
         all_parents_must_converge: false
         unified_job_template: 
           organization:
@@ -674,7 +674,7 @@ scm_workflowjobtemplates:
     org: Default
     inv: ""
     steps:
-      - identifier: "node101"
+      - identifier: "Lab4_config_ckp_sec_hosts"
         all_parents_must_converge: false
         unified_job_template: 
           organization: 
@@ -684,11 +684,11 @@ scm_workflowjobtemplates:
         credentials: []
         related:
           success_nodes:
-            - identifier: node201
+            - identifier: Lab4_config_ckp_sec_policies
           failure_nodes: []
           always_nodes: []
           credentials: []
-      - identifier: "node201"
+      - identifier: "Lab4_config_ckp_sec_policies"
         all_parents_must_converge: false
         unified_job_template: 
           organization: 

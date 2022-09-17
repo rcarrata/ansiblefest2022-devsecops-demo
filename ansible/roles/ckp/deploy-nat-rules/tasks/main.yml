@@ -95,13 +95,13 @@
     auto_publish_session: yes
 
 - name: Install Policy Access Control
-  cp_mgmt_install_policy:
+  check_point.mgmt.cp_mgmt_install_policy:
     access: true
     policy_package: Ansible_Fest_Package
     threat_prevention: false
 
 - name: Install Policy Threat Prevention
-  cp_mgmt_install_policy:
+  check_point.mgmt.cp_mgmt_install_policy:
     access: false
     policy_package: Ansible_Fest_Package
     threat_prevention: true
