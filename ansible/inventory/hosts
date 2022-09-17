@@ -23,7 +23,7 @@ ansible_password = "{{ password }}"
 #ansible_ssh_port=5986
 
 [ckp-sms]
-ckpsms ansible_host="20.111.56.6"
+ckp-sms ansible_host="20.111.56.6"
 
 [ckp-sms:vars]
 ansible_httpapi_use_ssl=True
@@ -45,13 +45,13 @@ ansible_user="admin"
 ansible_password="{{ adminPasswordsms }}"
 ansible_network_os=check_point.mgmt.checkpoint
 
-[internal]
-tower ansible_host="172.16.1.5"
-win10 ansible_host="172.16.1.6"
-rhel1 ansible_host="172.16.1.7"
-rhel2 ansible_host="172.16.1.8"
-ckp-sms ansible_host="172.16.1.9"
-ckp-gw ansible_host="172.16.1.253"
+; [internal]
+; tower ansible_host="172.16.1.5"
+; win10 ansible_host="172.16.1.6"
+; rhel1 ansible_host="172.16.1.7"
+; rhel2 ansible_host="172.16.1.8"
+; ckp-sms ansible_host="172.16.1.9"
+; ckp-gw ansible_host="172.16.1.253"
 
 
 [rhel]

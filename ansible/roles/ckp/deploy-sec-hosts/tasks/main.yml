@@ -1,7 +1,7 @@
 ---
 
 - name: "Add Host Win 10"
-  check_point.mgmt.cp_mgmt_host:
+  cp_mgmt_host:
     color: blue
     name: "{{ win10_vm_name }}"
     ip_address: "{{ win10_private_ip }}"
