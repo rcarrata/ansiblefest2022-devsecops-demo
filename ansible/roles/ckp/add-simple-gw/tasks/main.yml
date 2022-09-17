@@ -32,6 +32,7 @@
   delegate_to: localhost
   run_once: true
 
+# TODO: Fix to use the collections instead
 - name: Creating Gateway Object {{ item.name }}
   check_point_mgmt:
     command: add-simple-gateway

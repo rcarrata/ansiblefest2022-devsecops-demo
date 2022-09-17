@@ -1,6 +1,6 @@
 ---
 
-- hosts: ckpgw
+- hosts: ckp-gw
   vars_files:
     - vault/vault.yml
     - vars/common.yml

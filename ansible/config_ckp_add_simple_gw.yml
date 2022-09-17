@@ -1,6 +1,6 @@
 ---
 
-- hosts: ckpsms
+- hosts: ckp-sms
   vars_files:
     - vault/vault.yml
     - vars/common.yml

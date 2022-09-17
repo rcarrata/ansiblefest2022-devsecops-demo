@@ -22,10 +22,10 @@ ansible_password = "{{ password }}"
 #ansible_winrm_server_cert_validation=ignore
 #ansible_ssh_port=5986
 
-[ckpsms]
+[ckp-sms]
 ckpsms ansible_host="20.111.56.6"
 
-[ckpsms:vars]
+[ckp-sms:vars]
 ansible_httpapi_use_ssl=True
 ansible_httpapi_validate_certs=False
 #ansible_network_os="checkpoint"
@@ -34,10 +34,10 @@ ansible_password="{{ adminPasswordsms }}"
 ansible_network_os=check_point.mgmt.checkpoint
 
 
-[ckpgw]
+[ckp-gw]
 ckpgw
 
-[ckpgw:vars]
+[ckp-gw:vars]
 ansible_httpapi_use_ssl=True
 ansible_httpapi_validate_certs=False
 #ansible_network_os="checkpoint"
