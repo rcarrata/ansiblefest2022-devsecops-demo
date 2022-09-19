@@ -8,6 +8,6 @@
   connection: httpapi
   gather_facts: False
   tasks:
-    - name: '[ANSIBLEFEST] Config Add Simple GW to Checkpoint'
+    - name: '[ANSIBLEFEST22] Config Add Simple GW to Checkpoint'
       include_role:
         name: "ckp/add-simple-gw"

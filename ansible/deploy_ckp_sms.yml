@@ -7,6 +7,6 @@
     - vars/common.yml
     - "vars/{{ lab_name }}.yml"
   tasks:
-    - name: '[ANSIBLEFEST] Deploy Infra for Checkpoint Gateway'
+    - name: '[ANSIBLEFEST22] Deploy Infra for Checkpoint Gateway'
       include_role:
         name: "azure/create-ckp-sms"

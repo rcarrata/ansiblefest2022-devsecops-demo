@@ -7,6 +7,6 @@
     - vars/common.yml
     - "vars/{{ lab_name }}.yml"
   tasks:
-    - name: '[ANSIBLEFEST] Install Kubernetes in RHEl2'
+    - name: '[ANSIBLEFEST22] Install Kubernetes in RHEl2'
       include_role:
         name: "rhel/install-k8s"

@@ -8,6 +8,6 @@
   gather_facts: False
   connection: httpapi
   tasks:
-    - name: '[ANSIBLEFEST] Config Checkpoint Jumbo Hotfix in SMS'
+    - name: '[ANSIBLEFEST22] Config Checkpoint Jumbo Hotfix in SMS'
       include_role:
         name: "ckp/config-jumbo-hotfix"

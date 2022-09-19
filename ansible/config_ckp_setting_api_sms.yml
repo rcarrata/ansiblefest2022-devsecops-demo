@@ -7,6 +7,6 @@
     - vars/common.yml
     - "vars/{{ lab_name }}.yml"
   tasks:
-    - name: '[ANSIBLEFEST] Config Checkpoint Setting API SMS'
+    - name: '[ANSIBLEFEST22] Config Checkpoint Setting API SMS'
       include_role:
         name: "ckp/settings-api-sms"

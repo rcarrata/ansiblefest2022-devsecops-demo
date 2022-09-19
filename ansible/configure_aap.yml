@@ -8,7 +8,7 @@
     - vars/common.yml
 
   tasks:
-    - name: Create AAP organizations
+    - name: '[ANSIBLEFEST22] Create AAP organizations'
       ansible.controller.organization:
         name: "{{ item.name }}"
         description: "{{ item.desc }}"
@@ -22,7 +22,7 @@
         - organizations is defined
         - organizations|length > 0
 
-    - name: Create AAP teams
+    - name: '[ANSIBLEFEST22] Create AAP teams'
       ansible.controller.team:
         name: "{{ item.name }}"
         description: "{{ item.desc }}"
@@ -37,7 +37,7 @@
         - teams is defined
         - teams|length > 0
 
-    - name: Create AAP Users
+    - name: '[ANSIBLEFEST22] Create AAP Users'
       ansible.controller.user:
         username: "{{ item.username }}"
         password: "{{ item.password }}"
@@ -53,7 +53,7 @@
         - users is defined
         - users|length > 0
 
-    - name: Add AAP Users to organization 
+    - name: '[ANSIBLEFEST22] Add AAP Users to organization'
       ansible.controller.role:
         user: "{{ item.username }}"
         role: "{{ item.role }}"
@@ -68,7 +68,7 @@
         - users is defined
         - users|length > 0
 
-    - name: Create AAP admin Users
+    - name: '[ANSIBLEFEST22] Create AAP admin Users'
       ansible.controller.user:
         username: "{{ item.username }}"
         password: "{{ item.password }}"
@@ -85,7 +85,7 @@
         - admin_users is defined
         - admin_users|length > 0
 
-    - name: Create AAP auditor Users
+    - name: '[ANSIBLEFEST22] Create AAP auditor Users'
       ansible.controller.user:
         username: "{{ item.username }}"
         password: "{{ item.password }}"
@@ -102,7 +102,7 @@
         - auditor_users is defined
         - auditor_users|length > 0
 
-    - name: Create AAP Inventories
+    - name: '[ANSIBLEFEST22] Create AAP Inventories'
       ansible.controller.inventory:
         name: "{{ item.name }}"
         description: "{{ item.desc }}"
@@ -117,7 +117,7 @@
         - inventories is defined
         - inventories|length > 0
 
-    - name: Add hosts
+    - name: '[ANSIBLEFEST22] Add hosts'
       ansible.controller.host:
         name: "{{ item.name }}"
         description: "{{ item.desc }}"
@@ -133,7 +133,7 @@
         - hosts is defined
         - hosts|length > 0
 
-    - name: Add Execution Enviroment
+    - name: '[ANSIBLEFEST22] Add Execution Enviroment'
       ansible.controller.execution_environment:
         name: "{{ item.name }}"
         image: "{{ item.desc }}"
@@ -147,7 +147,7 @@
         - execution_enviroment is defined
         - execution_enviroment|length > 0
 
-    - name: Create Custom Credential Types
+    - name: '[ANSIBLEFEST22] Create Custom Credential Types'
       ansible.controller.credential_type:
         name: "{{ item.name }}"
         kind: "{{ item.kind }}"
@@ -163,7 +163,7 @@
         - scm_custom_credential_types is defined
         - scm_custom_credential_types|length > 0
 
-    - name: Create Credentials
+    - name: '[ANSIBLEFEST22] Create Credentials'
       ansible.controller.credential:
         name: "{{ item.name }}"
         description: "{{ item.desc }}"
@@ -181,7 +181,7 @@
         - scm_credentials is defined
         - scm_credentials|length > 0
 
-    - name: Create SCM Projects
+    - name: '[ANSIBLEFEST22] Create SCM Projects'
       ansible.controller.project:
         name: "{{ item.name }}"
         description: "{{ item.desc }}"
@@ -204,7 +204,7 @@
         - scm_projects is defined
         - scm_projects|length > 0
 
-    - name: Create AAP Job Templates
+    - name: '[ANSIBLEFEST22] Create AAP Job Templates'
       ansible.controller.job_template:
         name: "{{ item.name }}"
         description: "{{ item.desc }}"
@@ -227,7 +227,7 @@
         - scm_jobtemplates is defined
         - scm_jobtemplates|length > 0
 
-    - name: Create AAP Job Templates with Survey
+    - name: '[ANSIBLEFEST22] Create AAP Job Templates with Survey'
       ansible.controller.job_template:
         name: "{{ item.name }}"
         job_type: "run"
@@ -249,7 +249,7 @@
         - scm_jobtemplates_survey is defined
         - scm_jobtemplates_survey|length > 0
 
-    - name: Create AAP Workflow Job Templates
+    - name: '[ANSIBLEFEST22] Create AAP Workflow Job Templates'
       ansible.controller.workflow_job_template:
         name: "{{ item.name }}"
         organization: "{{ item.org }}"
@@ -265,7 +265,7 @@
         - scm_workflowjobtemplates is defined
         - scm_workflowjobtemplates|length > 0
 
-    - name: Create AAP Workflow Job Templates with WebHook
+    - name: '[ANSIBLEFEST22] Create AAP Workflow Job Templates with WebHook'
       ansible.controller.workflow_job_template:
         name: "{{ item.name }}"
         organization: "{{ item.org }}"
@@ -282,7 +282,7 @@
         - scm_workflowjobtemplates_webhook is defined
         - scm_workflowjobtemplates_webhook|length > 0
 
-    - name: Create AAP Workflow Job Templates with Survey
+    - name: '[ANSIBLEFEST22] Create AAP Workflow Job Templates with Survey'
       ansible.controller.workflow_job_template:
         name: "{{ item.name }}"
         organization: "{{ item.org }}"

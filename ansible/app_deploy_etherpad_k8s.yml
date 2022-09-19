@@ -7,6 +7,6 @@
     - vault/vault.yml
     - "vars/{{ lab_name }}.yml"
   tasks:
-    - name: '[ANSIBLEFEST] Install Etherpad in RHEL2'
+    - name: '[ANSIBLEFEST22] Install Etherpad in RHEL2'
       include_role:
         name: "rhel/deploy-etherpad"

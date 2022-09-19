@@ -6,6 +6,6 @@
     - vars/common.yml
     - "vars/{{ lab_name }}.yml"
   tasks:
-    - name: '[ANSIBLEFEST] Install SmartConsole in Win10'
+    - name: '[ANSIBLEFEST22] Install SmartConsole in Win10'
       include_role:
         name: "rhel/config-rhel"

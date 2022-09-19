@@ -9,3 +9,7 @@
     - "vars/{{ lab_name }}.yml"
   roles:
     - azure/create-tower
+  tasks:
+    - name: '[ANSIBLEFEST22] Create Tower VM in Azure'
+      include_role:
+        name: "azure/pre-azure-infra"

@@ -6,5 +6,7 @@
     - vars/common.yml
     - vault/vault.yml
     - "vars/{{ lab_name }}.yml"
-  roles:
-    - azure/create-rhel
+  tasks:
+    - name: '[ANSIBLEFEST22] Deploy RHEL instances in Azure'
+      include_role:
+        name: "azure/create-rhel"

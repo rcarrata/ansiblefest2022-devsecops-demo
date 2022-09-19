@@ -7,6 +7,6 @@
     - vars/common.yml
     - "vars/{{ lab_name }}.yml"
   tasks:
-    - name: '[ANSIBLEFEST] Upload SmartConsole file to the BlobStore'
+    - name: '[ANSIBLEFEST22] Upload SmartConsole file to the BlobStore'
       include_role:
         name: "win10/upload-smartconsole"

@@ -7,6 +7,6 @@
     - vault/vault.yml
     - "vars/{{ lab_name }}.yml"
   tasks:
-    - name: '[ANSIBLEFEST] Install Jboss in RHEL1'
+    - name: '[ANSIBLEFEST22] Install Jboss in RHEL1'
       include_role:
         name: "rhel/install-jboss"

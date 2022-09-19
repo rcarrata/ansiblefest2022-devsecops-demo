@@ -7,6 +7,6 @@
     - vault/vault.yml
     - "vars/{{ lab_name }}.yml"
   tasks:
-    - name: '[ANSIBLEFEST] Deploy Create Win 10'
+    - name: '[ANSIBLEFEST22] Create Win 10 in Azure'
       include_role:
         name: "azure/create-win10"

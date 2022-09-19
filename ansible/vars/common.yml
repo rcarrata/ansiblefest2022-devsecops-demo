@@ -254,18 +254,6 @@ scm_projects:
     git_cred: ""
 
 scm_jobtemplates:
-  - name: "Lab1_config_tower_objects"
-    desc: "Lab1 Config Tower Objects for Cybersec lab"
-    org: Default
-    inv: "Automation Controller Inventory"
-    project: "AnsibleFest2022 DevSecOps Project"
-    playbook: "ansible/configure_tower.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
-    creds:
-    - "Vault"
-    - "VMKey"
-    ask_variables_on_launch: no
-    execution_environment: "AnsibleFest Execution Environment"
   - name: "Lab2_deploy_win10_vm"
     desc: "deploy_win10_vm"
     org: Default

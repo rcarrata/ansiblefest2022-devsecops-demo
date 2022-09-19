@@ -8,6 +8,6 @@
     - vars/common.yml
     - "vars/{{ lab_name }}.yml"
   tasks:
-    - name: '[ANSIBLEFEST] Deploy Security hosts into Checkpoint sms'
+    - name: '[ANSIBLEFEST22] Deploy Security hosts into Checkpoint sms'
       include_role:
         name: "ckp/deploy-sec-hosts"
