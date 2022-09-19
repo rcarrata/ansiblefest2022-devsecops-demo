@@ -1,8 +1,8 @@
-= Lab1 - Integrating Ansible Tower with DevOps and Cloud Tools
+= Lab1 - Integrating Ansible Automation Platform with DevOps and Cloud Tools
 
 == 1 - Overview
 
-In this lab, we work fully in a cloud native scenario where the only resource preprovisioned is the Ansible Tower VM.
+In this lab, we work fully in a cloud native scenario where the only resource preprovisioned is the Ansible Automation Platform VM.
 
 With Red Hat® Ansible® Tower you can centralize and control your IT infrastructure with a visual dashboard, role-based access control, job scheduling, integrated notifications and graphical inventory management. 
 
@@ -12,20 +12,20 @@ With Red Hat® Ansible® Tower you can centralize and control your IT infrastruc
 </p>
 ++++
 
-Ansible Tower have a https://docs.ansible.com/ansible-tower/latest/html/userguide/main_menu.html[User Interface] with several objects that can control each part of the elements for the Automation process through Ansible.
+Ansible Automation Platform have a https://docs.ansible.com/ansible-tower/latest/html/userguide/main_menu.html[User Interface] with several objects that can control each part of the elements for the Automation process through Ansible.
 
 Some of these objects are Projects, Inventories, Job Templates, Workflow Templates, Credentials, etc. Each of one serves a specific purpose to execute and manage the automations, and can be created through the UI.
 
-But, if you want to repeat or control these objects in an automated way? Or just to define this object as a code for recreate or duplicate your automations in other Ansible Tower instances?
+But, if you want to repeat or control these objects in an automated way? Or just to define this object as a code for recreate or duplicate your automations in other Ansible Automation Platform instances?
 
 In this Lab1 we will see how to interact with the Tower API, to import and create all of the objects needed for the completion of the lab, defined as a code. 
 
 === 1.1 - Goals
 
-* Familiarize with Ansible Tower objects such as: Job Templates, Jobs, Credentials, Inventories or Projects (among others)
-* Import your custom lab objects into Ansible Tower for continue the rest of the labs
+* Familiarize with Ansible Automation Platform objects such as: Job Templates, Jobs, Credentials, Inventories or Projects (among others)
+* Import your custom lab objects into Ansible Automation Platform for continue the rest of the labs
 * Understand the Activity Streams, and trace the objects that are created in Tower
-* Understand the Infrastructure as Code for the objects of Ansible Tower.
+* Understand the Infrastructure as Code for the objects of Ansible Automation Platform.
 
 == 2 - Lab Specifications
 
@@ -36,13 +36,13 @@ In this Lab1 we will see how to interact with the Tower API, to import and creat
 === Resources involved
 
 * User Web Browser
-* Ansible Tower Portal
+* Ansible Automation Platform Portal
 
 == 3 - Guide
 
-=== 3.1 - First Ansible Tower access and exploration
+=== 3.1 - First Ansible Automation Platform access and exploration
 
-First access to the Ansible Tower IP in your laptop browser:
+First access to the Ansible Automation Platform IP in your laptop browser:
 
 ```
 https://"TOWER_PUBLIC_IP"
@@ -80,7 +80,7 @@ Are defined as https://github.com/rcarrata/ansiblefest2020-secdemo/blob/master/a
 
 So, automate the Automation Tool. Imagine the possibilities when you can define all of your objects, as code and added to your version control, release them, tag them, trace them... Isn't it useful?
 
-=== 3.2 - Importing AnsibleFest lab Objects in Ansible Tower
+=== 3.2 - Importing AnsibleFest lab Objects in Ansible Automation Platform
 
 From Templates, execute the ```Lab1_config_tower_objects``` from the rocket icon.
 
@@ -103,7 +103,7 @@ Therefore a https://github.com/rcarrata/ansiblefest2020-secdemo/blob/master/ansi
 
 Check that these are executing some automations through Ansible playbooks, but what are exactly doing?
 
-Meanwhile the job is running, duplicate your Ansible Tower tab (or click with the central button of your mouse in one of the objects in the left panel) in your browser and check again the credentials, templates, inventories and projects. 
+Meanwhile the job is running, duplicate your Ansible Automation Platform tab (or click with the central button of your mouse in one of the objects in the left panel) in your browser and check again the credentials, templates, inventories and projects. 
 
 Now there are more elements created!
 
@@ -143,15 +143,7 @@ But before you leave, check that the job is finished properly! Go to Jobs, and c
 </p>
 ++++
 
-== 4 - Video Demonstration
-
-Click below and you will be redirected to the lab video:
-
-ifdef::env-github[]
-image:https://static.thenounproject.com/png/196806-200.png[link=https://youtu.be/E6fCeUOWxsI]
-endif::[]
-
-link:lab2.adoc[Next Section -> Lab 2: Deploying the DevSecOps environment in Azure with Ansible Tower]
+link:lab2.adoc[Next Section -> Lab 2: Deploying the DevSecOps environment in Azure with Ansible Automation Platform]
 
 link:lab0.adoc[Previous Section -> Lab0 - Lab Overview & Prerequisites]
 

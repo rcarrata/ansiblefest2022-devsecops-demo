@@ -13,7 +13,7 @@ In this way, we not only control our ports or the apps, also we can filter, moni
 === 1.1 - Goals
 
 * Understand how the Nat Rules in Checkpoint works
-* Deploy from Ansible Tower automatically Kubernetes & JBoss Services and Hosts in Checkpoint GW & SMS, and apply them a NAT Rule
+* Deploy from Ansible Automation Platform automatically Kubernetes & JBoss Services and Hosts in Checkpoint GW & SMS, and apply them a NAT Rule
 * Understand how the apps services are exposed through Internet using the Checkpoint Secure GW
 * Test our connection and services of our applications Etherpad & Ticket Monster that are Internet exposed 
 
@@ -26,7 +26,7 @@ In this way, we not only control our ports or the apps, also we can filter, moni
 ==== Resources involved
 
 * User Web Browser
-* Ansible Tower Portal
+* Ansible Automation Platform Portal
 * Windows 10
 * SmartConsole
 
@@ -57,7 +57,7 @@ Check the Policies to verify that only the latest rules of lab4 are present:
 </p>
 ++++
 
-Now, we need to deploy the Nat Rules, Hosts, Services and Access Rules automatically, so in the Ansible Tower execute **Lab5_deploy_nat_rules_for_apps**:
+Now, we need to deploy the Nat Rules, Hosts, Services and Access Rules automatically, so in the Ansible Automation Platform execute **Lab5_deploy_nat_rules_for_apps**:
 
 ++++
 <p align="center">
@@ -115,14 +115,14 @@ Finally in the Policy, an Access rule are also created for allow the inbound tra
 </p>
 ++++
 
-IMPORTANT: All of this objects, rules, etc are automatically created by the https://github.com/rcarrata/ansiblefest2020-secdemo/blob/master/ansible/roles/ckp/deploy-nat-rules/tasks/main.yml[playbook] from Ansible Tower.
+IMPORTANT: All of this objects, rules, etc are automatically created by the https://github.com/rcarrata/ansiblefest2020-secdemo/blob/master/ansible/roles/ckp/deploy-nat-rules/tasks/main.yml[playbook] from Ansible Automation Platform.
 
 
 === 3.2 - Check Policies
 
 Now that we have created all the access, nat and policy rules, we need to test the Services exposed. 
 
-But first of all, obtain your Checkpoint Public IP, that is available in Tower in the **Lab2_deploy_ckp_gw**, so open the Jobs section in Ansible Tower, or pick the green icon in the Templates:
+But first of all, obtain your Checkpoint Public IP, that is available in Tower in the **Lab2_deploy_ckp_gw**, so open the Jobs section in Ansible Automation Platform, or pick the green icon in the Templates:
 
 ++++
 <p align="center">

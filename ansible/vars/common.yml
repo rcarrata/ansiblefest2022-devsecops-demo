@@ -91,7 +91,7 @@ win10_username: azureuser
 win10_offer: "Windows-10"
 win10_publisher: "MicrosoftWindowsDesktop"
 win10_sku: "win10-21h2-pro"
-win10_version: "19044.1889.220805"
+win10_version: "19044.1889.220805" # Updated
 
 win10_blob: "https://{{ storage_account_name }}.blob.core.windows.net/{{ storage_container }}/{{ win10_ckp_smartconsole }}"
 win10_ckp_smartconsole: SmartConsole.exe
@@ -110,7 +110,7 @@ tower_user: azureuser
 tower_offer: "RHEL"
 tower_publisher: "RedHat"
 tower_sku: "8_6"
-tower_version: "8.6.2022070801"
+tower_version: "8.6.2022070801" # Updated
 
 aap_setup_down_dest_dir: "/tmp"
 aap_setup_prep_working_dir: "/tmp"

@@ -1,4 +1,4 @@
-= Lab2 - Deploying the DevSecOps environment in Azure with Ansible Tower
+= Lab2 - Deploying the DevSecOps environment in Azure with Ansible Automation Platform
 
 == 1 - Overview
 
@@ -6,16 +6,16 @@ As we detailed in the previous section, we will work in a cloud native environme
 
 We selected Azure, because of the first class integrations with Checkpoint Virtual Appliances and because of the integrations also through Ansible.
 
-The lab started with only one instance of Ansible Tower created and pre-provisioned.
+The lab started with only one instance of Ansible Automation Platform created and pre-provisioned.
 
 IMPORTANT: In the provisioned lab mode, the IP of the Tower and the Lab Number will be provided. Ask your instructor to check this information.
 
-From this Ansible Tower instance will be provisioned the rest of the resources (VMs, Vnets, Disks, etc) in Azure, that are needed for the lab:
+From this Ansible Automation Platform instance will be provisioned the rest of the resources (VMs, Vnets, Disks, etc) in Azure, that are needed for the lab:
 
 === 1.1 - Goals
 
 * Deploy the infrastructure (VMs, Nics, Vnets, Public IPs, etc) in Azure needed for this lab 
-* Understand how to create resources within Azure through Ansible Tower
+* Understand how to create resources within Azure through Ansible Automation Platform
 * Access to Windows10 VM with RDP and use Powershell
 * Check connectivity and access to the brand new VMs created
 
@@ -28,7 +28,7 @@ From this Ansible Tower instance will be provisioned the rest of the resources (
 === Resources involved
 
 * User Web Browser
-* Ansible Tower Portal
+* Ansible Automation Platform Portal
 * Windows10
 * Windows10 Powershell
 
@@ -194,7 +194,7 @@ C:\Users\azureuser>ssh admin@"CHK_GW_IP"
 
 NOTE: Ping in the SMS GW is not allowed, because by default is filtered by security.
 
-In the command line, inside of the Checkpoint_SMS, Checkpoint_GW, Ansible Tower or Windows10 check that effectively you can reach internet through the gateway, and resolve google.com (or whatever webpage you want):
+In the command line, inside of the Checkpoint_SMS, Checkpoint_GW, Ansible Automation Platform or Windows10 check that effectively you can reach internet through the gateway, and resolve google.com (or whatever webpage you want):
 
 ```
 ping www.google.com
@@ -247,4 +247,4 @@ NOTE: The Azure console won't be provided in the lab preprovisioned.
 
 link:lab3.adoc[Next Section -> Lab 3: Checkpoint Cybersecurity environment automatic configuration]
 
-link:lab1.adoc[Previous Section -> Lab 1 - Integrating Ansible Tower with DevOps and Cloud Tools]
+link:lab1.adoc[Previous Section -> Lab 1 - Integrating Ansible Automation Platform with DevOps and Cloud Tools]

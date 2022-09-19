@@ -62,21 +62,6 @@
   loop:
     - "{{ rhel }}"
 
-#- name: "Add Dummy Host"
-#  cp_mgmt_host:
-#    color: red
-#    name: "dummy_host"
-#    ip_address: "192.168.1.1"
-#    state: present
-#    auto_publish_session: yes
-
-#- name:
-#  check_point.mgmt.cp_mgmt_access_section:
-#    layer: "Ansible_Fest_Package Network"
-#    name: "Kubernetes Rules"
-#    position: 3
-#    state: present
-
 - name: "Add Access rule Kubernetes and JBoss"
   check_point.mgmt.cp_mgmt_access_rule:
     layer: Ansible_Fest_Package Network

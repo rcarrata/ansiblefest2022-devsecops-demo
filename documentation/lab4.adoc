@@ -1,4 +1,4 @@
-= Lab4 - Automatic systems securization through Policies and Checkpoint Management Objects
+= Lab4 - Automatic systems securing through Policies and Checkpoint Management Objects
 
 == 1 - Overview
 
@@ -31,7 +31,7 @@ Finally we will check that our RHEL servers can exit to the Internet, because of
 === Resources involved
 
 * User Web Browser
-* Ansible Tower Portal
+* Ansible Automation Platform Portal
 * Windows 10
 * SmartConsole
 
@@ -151,7 +151,7 @@ For example this route table will connect the Internal Subnet DMZ and route the 
 </p>
 ++++
 
-For accomplished that, execute in Ansible Tower the Job Template **Lab4_config_azure_route_table_for_apps**, that will trigger the https://github.com/rcarrata/ansiblefest2020-secdemo/blob/master/ansible/config_ckp_add_route_table.yml[playbook] and https://github.com/rcarrata/ansiblefest2020-secdemo/tree/master/ansible/roles/ckp/add-route-table/tasks[roles] for that task:
+For accomplished that, execute in Ansible Automation Platform the Job Template **Lab4_config_azure_route_table_for_apps**, that will trigger the https://github.com/rcarrata/ansiblefest2020-secdemo/blob/master/ansible/config_ckp_add_route_table.yml[playbook] and https://github.com/rcarrata/ansiblefest2020-secdemo/tree/master/ansible/roles/ckp/add-route-table/tasks[roles] for that task:
 
 ++++
 <p align="center">

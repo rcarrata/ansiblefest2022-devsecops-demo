@@ -23,33 +23,37 @@
   roles:
     - azure/create-tower
 
-- name: "Configure Ansible Tower License"
+- name: "Deploy Ansible Tower"
   hosts: ansible-tower
+  become: true
+  gather_facts: no
   vars_files:
     - vars/vars-tower.yml
     - vault/vault.yml
+    - common.yml
   vars:
     ansible_ssh_user: azureuser
     ansible_ssh_pass: "{{ password }}"
     ansible_become_pass: "{{ password }}"
     ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
   roles:
-    - role: tower/config-ansible-tower
-    - role: tower/config-ansible-tower-license
+    - redhat_cop.aap_utilities.aap_setup_download
+    - redhat_cop.aap_utilities.aap_setup_prepare
+    - redhat_cop.aap_utilities.aap_setup_install
 
-- name: "Configure Checkpoint Library Packages"
-  hosts: ansible-tower
-  become: yes
-  vars:
-    ansible_ssh_user: azureuser
-    ansible_ssh_pass: "{{ password }}"
-    ansible_become_pass: "{{ password }}"
-    ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
-  vars_files:
-    - vars/vars-tower.yml
-    - vault/vault.yml
-  roles:
-  - role: tower/config-ansible-tower-package
+# - name: "Configure Checkpoint Library Packages"
+#   hosts: ansible-tower
+#   become: yes
+#   vars:
+#     ansible_ssh_user: azureuser
+#     ansible_ssh_pass: "{{ password }}"
+#     ansible_become_pass: "{{ password }}"
+#     ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"
+#   vars_files:
+#     - vars/vars-tower.yml
+#     - vault/vault.yml
+#   roles:
+#   - role: tower/config-ansible-tower-package
 
 - name: "Post Configuration of Ansible Tower"
   hosts: ansible-tower

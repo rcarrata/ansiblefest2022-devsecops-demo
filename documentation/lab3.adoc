@@ -26,7 +26,7 @@ Now it's time to configure the Checkpoint environments in order to update their 
 === 2.2 - Resources involved
 
 * User Web Browser
-* Ansible Tower Portal
+* Ansible Automation Platform Portal
 * Windows 10
 * Windows 10 Powershell
 
@@ -83,7 +83,7 @@ We need some additional packages for accomplishing this scenario, and we could i
 
 Let's do it!
 
-Go to Ansible Tower and execute the Job Template of **Lab3_config_win10_vm**:
+Go to Ansible Automation Platform and execute the Job Template of **Lab3_config_win10_vm**:
 
 ++++
 <p align="center">
@@ -145,7 +145,7 @@ endif::[]
 
 Now that we have the configured software packages in our Windows10, and we're able to connect to the checkpoint systems.
 
-But first we need to download and install the Jumbo Hotfix Accumulator and enable the API to be able to use the latest modules from Ansible (executed in Ansible Tower).
+But first we need to download and install the Jumbo Hotfix Accumulator and enable the API to be able to use the latest modules from Ansible (executed in Ansible Automation Platform).
 
 https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk153152[Jumbo Hotfix Accumulator] is an accumulation of stability and quality fixes resolving multiple issues in different products. This Incremental Hotfix and this article are periodically updated with new fixes.
 
@@ -172,7 +172,7 @@ The image below is the two Job Templates that will be executed.
 </p>
 ++++
 
-IMPORTANT: The Config Jumbo Hotfix takes some time (18mins approx), so its perfect time to grab a coffee and take a small break, or review the video demo below. Check the logs of the Ansible Tower also in order to review the progress (the Check Status of the API is always slowly in non baremetal environments)
+IMPORTANT: The Config Jumbo Hotfix takes some time (18mins approx), so its perfect time to grab a coffee and take a small break, or review the video demo below. Check the logs of the Ansible Automation Platform also in order to review the progress (the Check Status of the API is always slowly in non baremetal environments)
 
 We need some additional packages for accomplishing this scenario, and we could install by hand. But this is boring, no? Why not add this required software in an automated way with Ansible?
 
@@ -336,4 +336,4 @@ endif::[]
 
 link:lab4.adoc[Next Section -> Lab4 - Automatic systems securization through Policies and Checkpoint Management Objects]
 
-link:lab2.adoc[Previous Section -> Lab 2: Deploying the DevSecOps environment in Azure with Ansible Tower]
+link:lab2.adoc[Previous Section -> Lab 2: Deploying the DevSecOps environment in Azure with Ansible Automation Platform]
