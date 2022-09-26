@@ -1,0 +1,8 @@
+## ToDo List
+
+- Change the K8s raw commands, for the k8s module instead
+- Test the new r80.40 or the latest version of the CheckPoint (SMS/GW) in Azure
+- Add the MicroShift instead of k8s and manage with the k8s modules
+- Deploy the application (PacMan instead? or one of the IOL) in MicroShift
+- Change the manual commands in the Checkpoint to the new modules (add simple gw api, raw ckp commands, etc)
+- Modify the Azure and add force tunneling and proper Routing with Monitorization (NetObsv?, Azure Security Center?)
