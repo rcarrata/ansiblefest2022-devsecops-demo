@@ -6,7 +6,7 @@
 
 *Diego Escobar*, Public Sector Security Engineer, Checkpoint^(R)^
 
-*Roberto Carratalá*, EMEA Cloud Services Black Belt, Red Hat
+*Roberto Carratalá*, EMEA Cloud Services Black Belt, Red Hat^(R)^
 
 == Demo/Lab Overview
 
@@ -15,6 +15,10 @@ In this demo, we will cover the comprehensive Cybersecurity capabilities availab
 == Demo Environment
 
 The entire demo environment is hosted online and includes Red Hat Ansible Automation Platform^(R)^, Red Hat Enterprise Linux^(R)^, Checkpoint^(R)^ Security Management Virtual Appliances, Checkpoint^(R)^ Security Gateway, Microsoft^(R)^ Windows, Microsoft Azure^(R)^, Red Hat^(R)^ JBoss Web Server, OpenShift^(R)^ and Kubernetes^(R)^.
+
+== Working In Progress
+
+* link:documentation/todos.adoc[Features To Add / BugFixes]
 
 == Slides
 

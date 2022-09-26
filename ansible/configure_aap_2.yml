@@ -1,0 +1,13 @@
+---
+- name: Config Ansible Automation Platform
+  hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vault/vault.yml
+    - "vars/{{ lab_name }}.yml"
+    - vars/common.yml
+
+  tasks:
+    - name: '[ANSIBLEFEST22] Deploy IaaC for manage projects/creds/WF/inventories in the AAP'
+      include_role:
+        name: "tower/config-tower"

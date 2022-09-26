@@ -1,0 +1,293 @@
+---
+
+- name: '[ANSIBLEFEST22] Create AAP organizations'
+  ansible.controller.organization:
+    name: "{{ item.name }}"
+    description: "{{ item.desc }}"
+    state: present
+    validate_certs: no
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+  loop: "{{ organizations }}"
+  when:
+    - organizations is defined
+    - organizations|length > 0
+
+- name: '[ANSIBLEFEST22] Create AAP teams'
+  ansible.controller.team:
+    name: "{{ item.name }}"
+    description: "{{ item.desc }}"
+    organization: "{{ item.org }}"
+    state: present
+    validate_certs: no
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+  loop: "{{ teams }}"
+  when:
+    - teams is defined
+    - teams|length > 0
+
+- name: '[ANSIBLEFEST22] Create AAP Users'
+  ansible.controller.user:
+    username: "{{ item.username }}"
+    password: "{{ item.password }}"
+    email: "{{ item.email }}"
+    update_secrets: false
+    state: present
+    validate_certs: no
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+  loop: "{{ users }}"
+  when:
+    - users is defined
+    - users|length > 0
+
+- name: '[ANSIBLEFEST22] Add AAP Users to organization'
+  ansible.controller.role:
+    user: "{{ item.username }}"
+    role: "{{ item.role }}"
+    organization: "{{ item.org }}"
+    state: present
+    validate_certs: no
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+  loop: "{{ users }}"
+  when:
+    - users is defined
+    - users|length > 0
+
+- name: '[ANSIBLEFEST22] Create AAP admin Users'
+  ansible.controller.user:
+    username: "{{ item.username }}"
+    password: "{{ item.password }}"
+    email: "{{ item.email }}"
+    update_secrets: false
+    superuser: yes
+    state: present
+    validate_certs: no
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+  loop: "{{ admin_users }}"
+  when:
+    - admin_users is defined
+    - admin_users|length > 0
+
+- name: '[ANSIBLEFEST22] Create AAP auditor Users'
+  ansible.controller.user:
+    username: "{{ item.username }}"
+    password: "{{ item.password }}"
+    email: "{{ item.email }}"
+    update_secrets: false
+    auditor: yes
+    state: present
+    validate_certs: no
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+  loop: "{{ auditor_users }}"
+  when:
+    - auditor_users is defined
+    - auditor_users|length > 0
+
+- name: '[ANSIBLEFEST22] Create AAP Inventories'
+  ansible.controller.inventory:
+    name: "{{ item.name }}"
+    description: "{{ item.desc }}"
+    organization: "{{ item.org }}"
+    state: present
+    validate_certs: no
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+  loop: "{{ inventories }}"
+  when:
+    - inventories is defined
+    - inventories|length > 0
+
+- name: '[ANSIBLEFEST22] Add hosts'
+  ansible.controller.host:
+    name: "{{ item.name }}"
+    description: "{{ item.desc }}"
+    inventory: "{{ item.inv }}"
+    variables: "{{ item.vars }}"
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+    state: present
+    validate_certs: no
+  loop: "{{ hosts }}"
+  when:
+    - hosts is defined
+    - hosts|length > 0
+
+- name: '[ANSIBLEFEST22] Add Execution Enviroment'
+  ansible.controller.execution_environment:
+    name: "{{ item.name }}"
+    image: "{{ item.desc }}"
+    state: present
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+    validate_certs: no
+  loop: "{{ execution_enviroment }}"
+  when:
+    - execution_enviroment is defined
+    - execution_enviroment|length > 0
+
+- name: '[ANSIBLEFEST22] Create Custom Credential Types'
+  ansible.controller.credential_type:
+    name: "{{ item.name }}"
+    kind: "{{ item.kind }}"
+    inputs: "{{ item.inputs }}"
+    injectors: "{{ item.injectors }}"
+    state: present
+    validate_certs: false
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+  loop: "{{ scm_custom_credential_types }}"
+  when:
+    - scm_custom_credential_types is defined
+    - scm_custom_credential_types|length > 0
+
+- name: '[ANSIBLEFEST22] Create Credentials'
+  ansible.controller.credential:
+    name: "{{ item.name }}"
+    description: "{{ item.desc }}"
+    organization: "{{ item.org }}"
+    credential_type: "{{ item.type }}"
+    update_secrets: false
+    inputs: "{{ item.inputs }}"
+    state: present
+    validate_certs: no
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+  loop: "{{ scm_credentials }}"
+  when:
+    - scm_credentials is defined
+    - scm_credentials|length > 0
+
+- name: '[ANSIBLEFEST22] Create SCM Projects'
+  ansible.controller.project:
+    name: "{{ item.name }}"
+    description: "{{ item.desc }}"
+    organization: "{{ item.org }}"
+    scm_branch: "{{ item.git_branch }}"
+    scm_clean: yes
+    #scm_credential: "{{ item.git_cred }}"
+    scm_delete_on_update: yes
+    scm_type: git
+    scm_update_on_launch: yes
+    scm_url: "{{ item.git_url }}"
+    state: present
+    wait: yes
+    validate_certs: no
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+  loop: "{{ scm_projects }}"
+  when:
+    - scm_projects is defined
+    - scm_projects|length > 0
+
+- name: '[ANSIBLEFEST22] Create AAP Job Templates'
+  ansible.controller.job_template:
+    name: "{{ item.name }}"
+    description: "{{ item.desc }}"
+    job_type: "run"
+    organization: "{{ item.org }}"
+    inventory: "{{ item.inv }}"
+    project: "{{ item.project }}"
+    playbook: "{{ item.playbook }}"
+    extra_vars: "{{ item.extra_vars }}"
+    credentials: "{{ item.creds }}"
+    execution_environment: "{{ item.execution_environment }}"
+    ask_variables_on_launch: "{{ item.ask_variables_on_launch }}"
+    state: present
+    validate_certs: no
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+  loop: "{{ scm_jobtemplates }}"
+  when:
+    - scm_jobtemplates is defined
+    - scm_jobtemplates|length > 0
+
+- name: '[ANSIBLEFEST22] Create AAP Job Templates with Survey'
+  ansible.controller.job_template:
+    name: "{{ item.name }}"
+    job_type: "run"
+    organization: "{{ item.org }}"
+    inventory: "{{ item.inv }}"
+    project: "{{ item.project }}"
+    playbook: "{{ item.playbook }}"
+    credentials: "{{ item.creds }}"
+    execution_environment: "{{ item.execution_environment }}"
+    survey_enabled: "{{ item.survey_enabled }}"
+    survey_spec: "{{ item.survey_spec }}"
+    state: present
+    validate_certs: no
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+  loop: "{{ scm_jobtemplates_survey }}"
+  when:
+    - scm_jobtemplates_survey is defined
+    - scm_jobtemplates_survey|length > 0
+
+- name: '[ANSIBLEFEST22] Create AAP Workflow Job Templates'
+  ansible.controller.workflow_job_template:
+    name: "{{ item.name }}"
+    organization: "{{ item.org }}"
+    inventory: "{{ item.inv }}"
+    schema: "{{ item.steps }}"
+    state: present
+    validate_certs: no
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+  loop: "{{ scm_workflowjobtemplates }}"
+  when:
+    - scm_workflowjobtemplates is defined
+    - scm_workflowjobtemplates|length > 0
+
+- name: '[ANSIBLEFEST22] Create AAP Workflow Job Templates with WebHook'
+  ansible.controller.workflow_job_template:
+    name: "{{ item.name }}"
+    organization: "{{ item.org }}"
+    inventory: "{{ item.inv }}"
+    schema: "{{ item.steps }}"
+    webhook_service: "{{ item.webhook }}"
+    state: present
+    validate_certs: no
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+  loop: "{{ scm_workflowjobtemplates_webhook }}"
+  when:
+    - scm_workflowjobtemplates_webhook is defined
+    - scm_workflowjobtemplates_webhook|length > 0
+
+- name: '[ANSIBLEFEST22] Create AAP Workflow Job Templates with Survey'
+  ansible.controller.workflow_job_template:
+    name: "{{ item.name }}"
+    organization: "{{ item.org }}"
+    inventory: "{{ item.inv }}"
+    schema: "{{ item.steps }}"
+    survey_enabled: "{{ item.survey_enabled }}"
+    survey_spec: "{{ item.survey_spec }}"
+    state: present
+    validate_certs: no
+    controller_host: "{{ aap_host }}"
+    controller_username: "{{ aap_user }}"
+    controller_password: "{{ aap_pass }}"
+  loop: "{{ scm_workflowjobtemplates_survey }}"
+  when:
+    - scm_workflowjobtemplates_survey is defined
+    - scm_workflowjobtemplates_survey|length > 0
