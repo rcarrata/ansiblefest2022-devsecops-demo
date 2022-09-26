@@ -1,7 +1,6 @@
 ---
-# tasks file for create-rhel
 
-- name: Create Network Security Group
+- name: Create Network Security Group for RHEL
   azure_rm_securitygroup:
     resource_group: "{{ main_resgroup }}"
     name: "{{ rhel_net_seg_group }}"
@@ -22,7 +21,7 @@
         priority: 1002
         direction: Inbound
 
-- name: Create a network interface with private IP address only
+- name: Create a network interface for RHEL with private IP address only
   azure_rm_networkinterface:
     name: "{{ item.nic }}"
     resource_group: "{{ main_resgroup }}"
@@ -36,7 +35,7 @@
         private_ip_allocation_method: Static
   loop: "{{ rhel }}"
 
-- name: Create RHEL VM
+- name: Create RHEL VM in Azure
   azure_rm_virtualmachine:
     resource_group: "{{ main_resgroup }}"
     name: "{{ item.vm_name }}"

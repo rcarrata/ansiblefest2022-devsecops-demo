@@ -1,5 +1,5 @@
 ---
-- name: Create resource group for GW
+- name: Create resource group for Checkpoint GW
   azure_rm_resourcegroup:
     name: "{{ gw_resgroup }}"
     location: "{{ location }}"

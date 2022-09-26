@@ -1,10 +1,10 @@
 ---
-- name: Create resource group for SMS
+- name: Create resource group for Checkpoint SMS
   azure_rm_resourcegroup:
     name: "{{ sms_resgroup }}"
     location: "{{ location }}"
 
-- name: Deploy SMS on azure
+- name: Deploy Checkpoint SMS on azure
   ignore_errors: True
   azure_rm_deployment:
     state: present
