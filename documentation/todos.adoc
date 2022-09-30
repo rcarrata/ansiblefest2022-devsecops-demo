@@ -1,5 +1,6 @@
 ## ToDo List
 
+- Add Win10 with the RDP allow directly, for having the SSH without RDP and Powershell first
 - Change the K8s raw commands, for the k8s module instead
 - Test the new r80.40 or the latest version of the CheckPoint (SMS/GW) in Azure
 - Add the MicroShift instead of k8s and manage with the k8s modules

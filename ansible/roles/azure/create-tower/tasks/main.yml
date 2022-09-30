@@ -1,7 +1,7 @@
 ---
 # tasks file for create-tower
 
-- name: Create Network Security Group
+- name: Create Network Security Group for the Ansible Automation Platform Controller
   azure_rm_securitygroup:
     resource_group: "{{ main_resgroup }}"
     name: "{{ tower_net_seg_group }}"
@@ -30,7 +30,7 @@
         priority: 1003
         direction: Inbound
 
-- name: Create public IP address
+- name: Create public IP address for the Ansible Automation Platform Controller
   azure_rm_publicipaddress:
     resource_group: "{{ main_resgroup }}"
     allocation_method: Static
@@ -45,7 +45,7 @@
   set_fact:
     tower_pip: "{{ output_ip_address.state.ip_address }}"
 
-- name: Create a network interface with public and private IP
+- name: Create a network interface with public and private IP for the Ansible Automation Platform Controller
   azure_rm_networkinterface:
     name: "{{ tower_nic }}"
     resource_group: "{{ main_resgroup  }}"
@@ -59,7 +59,7 @@
         private_ip_address: "{{ tower_private_ip }}"
         private_ip_allocation_method: Static
 
-- name: Create Tower VM
+- name: Create Tower VM for the Ansible Automation Platform Controller
   azure_rm_virtualmachine:
     resource_group: "{{ main_resgroup }}"
     name: "{{ tower_vm_name }}"
@@ -73,7 +73,7 @@
       sku: "{{ tower_sku }}"
       version: "{{ tower_version }}"
 
-- name: "Wait for SSH to come up"
+- name: Wait for SSH to come up
   wait_for:
     host: "{{ tower_pip }}"
     port: 22
@@ -81,14 +81,14 @@
     timeout: 320
     state: started
 
-- name: "Register the specs of the new brand VM"
+- name: Register the specs of the new brand VM
   set_stats:
     data:
       new_vm_ip: "{{ tower_pip }}"
     per_host: no
     aggregate: no
 
-- name: "Add tower-instance to the inv"
+- name: Add tower-instance to the inv
   add_host:
     name: "{{ tower_pip }}"
     groups: "ansible-tower"

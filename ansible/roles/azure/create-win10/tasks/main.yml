@@ -1,8 +1,8 @@
 ---
 
-- name: Create Network Security Group
+- name: Create Network Security Group for Win10 VM
   azure_rm_securitygroup:
-    resource_group: "{{ main_resgroup }}"
+    resource_group: "{{ win10_resgroup }}"
     name: "{{ win10_net_seg_group }}"
     rules:
       - name: 'allow_rdp'
@@ -28,21 +28,21 @@
         priority: 1003
         direction: Inbound
 
-- name: Create public IP address
+- name: Create public IP address for Win10 VM
   azure_rm_publicipaddress:
-    resource_group: "{{ main_resgroup }}"
+    resource_group: "{{ win10_resgroup }}"
     allocation_method: Static
     name: "{{ win10_public_ip }}"
   register: output_ip_address
 
-- name: Output public IP
+- name: Output public IP for Win10 VM
   debug:
     msg: "The public IP is {{ output_ip_address.state.ip_address }}. Used to connect with RDP"
 
-- name: Create a network interface with public and private IP
+- name: Create a network interface with public and private IP for Win10 VM
   azure_rm_networkinterface:
     name: "{{ win10_nic }}"
-    resource_group: "{{ main_resgroup  }}"
+    resource_group: "{{ win10_resgroup  }}"
     virtual_network: "{{ main_vnet_name }}"
     subnet_name: "{{ internal_subnet_name }}"
     security_group: "{{ win10_net_seg_group }}"
@@ -53,9 +53,10 @@
         private_ip_allocation_method: Static
         private_ip_address: "{{ win10_private_ip  }}"
 
+
 - name: Create VM Windows10
   azure_rm_virtualmachine:
-    resource_group: "{{ main_resgroup }}"
+    resource_group: "{{ win10_resgroup }}"
     name: "{{ win10_vm_name }}"
     vm_size: "{{ win10_vm_size }}"
     admin_username: "{{ win10_username }}"
@@ -67,30 +68,3 @@
       publisher: "{{ win10_publisher }}"
       sku: "{{ win10_sku }}"
       version: "{{ win10_version }}"
-
-#- name: Deploy Windows10 on azure for the WinRM
-#  ignore_errors: True
-#  azure_rm_deployment:
-#    state: present
-#    subscription_id: "{{ subscription_id }}"
-#    secret: "{{ secret }}"
-#    client_id: "{{ client_id }}"
-#    tenant: "{{ tenant }}"
-#    location: "{{ location }}"
-#    resource_group_name: "{{ main_resgroup }}"
-#    parameters:
-#      adminUsername:
-#        value: "{{ win10_username }}"
-#      adminPassword:
-#        value: "{{ password }}"
-#      dnsLabelPrefix:
-#        value: "{{ dnsLabelPrefix }}"
-#      vmName:
-#        value: "{{ vmName_w10 }}"
-#      nicName:
-#        value: "{{ win10_nic }}"
-#      virtualNetworkName:
-#        value: "{{ main_vnet_name }}"
-#      publicIPAddressName:
-#        value: "{{ win10_public_ip }}"
-#    template_link: "{{ template_linksms }}"

@@ -2,7 +2,7 @@
 
 - name: Create Network Security Group for RHEL
   azure_rm_securitygroup:
-    resource_group: "{{ main_resgroup }}"
+    resource_group: "{{ rhel_resgroup }}"
     name: "{{ rhel_net_seg_group }}"
     rules:
       - name: 'allow_web_traffic'
@@ -24,7 +24,7 @@
 - name: Create a network interface for RHEL with private IP address only
   azure_rm_networkinterface:
     name: "{{ item.nic }}"
-    resource_group: "{{ main_resgroup }}"
+    resource_group: "{{ rhel_resgroup }}"
     virtual_network: "{{ main_vnet_name }}"
     subnet_name: "{{ internal_subnet_dmz_name }}"
     security_group: "{{ rhel_net_seg_group }}"
@@ -37,7 +37,7 @@
 
 - name: Create RHEL VM in Azure
   azure_rm_virtualmachine:
-    resource_group: "{{ main_resgroup }}"
+    resource_group: "{{ rhel_resgroup }}"
     name: "{{ item.vm_name }}"
     vm_size: "{{ rhel_vm_size }}"
     admin_username: "{{ rhel_username }}"

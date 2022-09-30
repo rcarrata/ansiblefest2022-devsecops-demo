@@ -7,8 +7,6 @@
     - vars/common.yml
     - "vars/{{ lab_name }}.yml"
   tasks:
-    - name: '[ANSIBLEFEST22] Destroy the Azure Net Infrastructure'
+    - name: '[ANSIBLEFEST22] Destroy the Azure Net Infrastructure (Win10, RHELs, CHKP SMS, CHKP GW)'
       include_role:
         name: "azure/destroy-azure-infra"
-
-

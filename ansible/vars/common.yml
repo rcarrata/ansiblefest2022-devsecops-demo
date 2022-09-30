@@ -1,12 +1,17 @@
 ---
 
-##### SubcriptionData
+## README
+## common.yml - provides the common variables for the lab
+## labX.yml   - provides the specific network variables for the lab (for deploy more than 1 lab each time)
+## vault.yml  - provides the encrypted vault variables like creds that needs to be protected
+
+##### Subscription Data #####
 #subscription_id: encrypted in vault.yml
 #secret: encrypted in vault.yml
 #client_id: encrypted in vault.yml
 #tenant: encrypted in vault.yml
 
-##### Azure Net Infra
+##### Azure Net Infra #####
 #main_resgroup: check vars/labx.yml
 #main_vnet_name: check vars/labx.yml
 #vnet_ip: "check vars/labx.yml
@@ -23,7 +28,7 @@ storage_container: "ansiblefest2022"
 route_table: "ansiblefest_{{ lab_name }}_route_table"
 route_table_name: "ansiblefest_{{ lab_name }}_route_table_Internet"
 
-##### Azure CHKP SMS
+##### Azure CheckPoint SMS #####
 sms_resgroup: "ansiblefest_{{ lab_name }}_sms_rg"
 cloudGuardVersionsms: "R80.30 - Bring Your Own License"
 #adminPasswordsms: stored in vault
@@ -53,7 +58,7 @@ deployagent_pkg: "DeploymentAgent_000001959_1.tgz"
 ckp_jumbohotfix_blob: "{{ ckp_resources_blob }}/{{ jumbohotfix_pkg }}"
 jumbohotfix_pkg: "Check_Point_R80_30_JUMBO_HF_Bundle_T217_sk153152_Security_Management_3_10_FULL.tgz"
 
-##### Azure CHKP GW
+##### Azure CheckPoint Gateway #####
 gw_resgroup: "ansiblefest_{{ lab_name }}_gw_rg"
 cloudGuardVersiongw: "R80.30 - Bring Your Own License"
 #adminPasswordgw: stored in vault
@@ -77,7 +82,8 @@ diskTypegw: "Standard_LRS"
 sourceImageVhdUrigw: "noCustomUri"
 template_linkgw: "https://raw.githubusercontent.com/CheckPointSW/CloudGuardIaaS/master/azure/templates/marketplace-single/mainTemplate.json"
 
-##### Azure VM Win10
+##### Azure VM Win10 #####
+win10_resgroup: "ansiblefest_{{ lab_name }}_w10_rg"
 win10_net_seg_group: "nsg1_{{ lab_name }}"
 win10_public_ip: "win10_ip_{{ lab_name }}"
 win10_nic: "win10_nic_{{ lab_name }}"
@@ -96,7 +102,7 @@ win10_version: "19044.1889.220805" # Updated
 win10_blob: "https://{{ storage_account_name }}.blob.core.windows.net/{{ storage_container }}/{{ win10_ckp_smartconsole }}"
 win10_ckp_smartconsole: SmartConsole.exe
 
-##### Azure VM Tower
+##### Azure VM Tower #####
 tower_public_ip: "tower_ip_{{ lab_name }}"
 tower_net_seg_group: "tower_nsg1_{{ lab_name }}"
 tower_nic: "tower_nic_{{ lab_name }}"
@@ -120,7 +126,8 @@ aap_setup_prep_inv_nodes:
   automationcontroller:
   database:
 
-##### RHEL1
+##### RHEL1 #####
+rhel_resgroup: "ansiblefest_{{ lab_name }}_rhel_rg"
 rhel_net_seg_group: "rhel_nsg_{{ lab_name }}"
 rhel_vm_size: "Standard_DS1_v2"
 rhel_username: azureuser
