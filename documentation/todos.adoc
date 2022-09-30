@@ -7,3 +7,4 @@
 - Deploy the application (PacMan instead? or one of the IOL) in MicroShift
 - Change the manual commands in the Checkpoint to the new modules (add simple gw api, raw ckp commands, etc)
 - Modify the Azure and add force tunneling and proper Routing with Monitorization (NetObsv?, Azure Security Center?)
+- Document all the steps related to the lab

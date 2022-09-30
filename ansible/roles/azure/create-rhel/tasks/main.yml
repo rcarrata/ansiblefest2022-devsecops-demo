@@ -1,5 +1,10 @@
 ---
 
+- name: Create resource group for RHEL
+  azure_rm_resourcegroup:
+    name: "{{ rhel_resgroup }}"
+    location: "{{ location }}"
+
 - name: Create Network Security Group for RHEL
   azure_rm_securitygroup:
     resource_group: "{{ rhel_resgroup }}"
