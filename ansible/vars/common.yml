@@ -1,5 +1,4 @@
 ---
-
 ## README
 ## common.yml - provides the common variables for the lab
 ## labX.yml   - provides the specific network variables for the lab (for deploy more than 1 lab each time)
@@ -43,7 +42,7 @@ vnetNewOrExistingsms: "existing"
 virtualNetworkExistingRGNamesms: "{{ main_resgroup }}"
 managementGUIClientNetworksms: "0.0.0.0/0"
 installationTypesms: "management"
-allowDownloadFromUploadToCheckPointsms: 'true'
+allowDownloadFromUploadToCheckPointsms: "true"
 additionalDiskSizeGBsms: "0"
 diskTypesms: "Standard_LRS"
 sourceImageVhdUrisms: "noCustomUri"
@@ -76,7 +75,7 @@ Subnet2Prefixgw: "{{ internal_subnet_ip }}"
 #Subnet2StartAddressgw: "check vars/labx.yml"
 vnetNewOrExistinggw: "existing"
 virtualNetworkExistingRGNamegw: "{{ main_resgroup }}"
-allowDownloadFromUploadToCheckPointgw: 'true'
+allowDownloadFromUploadToCheckPointgw: "true"
 additionalDiskSizeGBgw: "0"
 diskTypegw: "Standard_LRS"
 sourceImageVhdUrigw: "noCustomUri"
@@ -177,27 +176,36 @@ hosts:
   - name: localhost
     desc: ""
     inv: "Automation Controller Inventory"
-    vars: { "ansible_connection": "local", "ansible_python_interpreter": '{{ ansible_playbook_python }}' }
+    vars:
+      {
+        "ansible_connection": "local",
+        "ansible_python_interpreter": "{{ ansible_playbook_python }}",
+      }
   - name: w10
     desc: ""
-    inv:  "w10"
-    vars: { "ansible_host": '{{ win10_private_ip }}' }
+    inv: "w10"
+    vars: { "ansible_host": "{{ win10_private_ip }}" }
   - name: rhel1
     desc: ""
-    inv:  "rhel1"
-    vars: { "ansible_host": '{{ rhel1_private_ip }}' }
+    inv: "rhel1"
+    vars: { "ansible_host": "{{ rhel1_private_ip }}" }
   - name: rhel2
     desc: ""
-    inv:  "rhel2"
-    vars: { "ansible_host": '{{ rhel2_private_ip }}' }
+    inv: "rhel2"
+    vars: { "ansible_host": "{{ rhel2_private_ip }}" }
   - name: ckp-sms
     desc: ""
-    inv:  "ckp-sms"
-    vars: { "ansible_host": '{{ Subnet1StartAddresssms }}', "ansible_user": "admin" }
+    inv: "ckp-sms"
+    vars:
+      {
+        "ansible_host": "{{ Subnet1StartAddresssms }}",
+        "ansible_user": "admin",
+      }
   - name: ckp-gw
     desc: ""
-    inv:  "ckp-gw"
-    vars: { "ansible_host": '{{ Subnet2StartAddressgw }}', "ansible_user": "admin" }
+    inv: "ckp-gw"
+    vars:
+      { "ansible_host": "{{ Subnet2StartAddressgw }}", "ansible_user": "admin" }
 
 execution_enviroment:
   - name: "AnsibleFest Execution Environment"
@@ -208,7 +216,7 @@ scm_custom_credential_types: []
 scm_credentials:
   - name: "Red Hat Ansible Automation Platform Credential"
     desc: "Red Hat Ansible Automation Platform Credential"
-    org: Default 
+    org: Default
     type: "Red Hat Ansible Automation Platform"
     inputs:
       host: "https://{{ aap_host }}"
@@ -267,10 +275,10 @@ scm_jobtemplates:
     inv: "Automation Controller Inventory"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/deploy_win10_vm.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "azure_creds"
-    - "Vault"
+      - "azure_creds"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "AnsibleFest Execution Environment"
   - name: "Lab2_deploy_ckp_gw"
@@ -279,10 +287,10 @@ scm_jobtemplates:
     inv: "Automation Controller Inventory"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/deploy_ckp_gw.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "azure_creds"
-    - "Vault"
+      - "azure_creds"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "AnsibleFest Execution Environment"
   - name: "Lab2_deploy_ckp_sms"
@@ -291,10 +299,10 @@ scm_jobtemplates:
     inv: "Automation Controller Inventory"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/deploy_ckp_sms.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "azure_creds"
-    - "Vault"
+      - "azure_creds"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "AnsibleFest Execution Environment"
   - name: "Lab2_deploy_rhel_vm"
@@ -303,11 +311,11 @@ scm_jobtemplates:
     inv: "Automation Controller Inventory"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/deploy_rhel_vm.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "azure_creds"
-    - "VMKey"
-    - "Vault"
+      - "azure_creds"
+      - "VMKey"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "AnsibleFest Execution Environment"
   - name: "Lab3_config_win10_vm"
@@ -316,10 +324,10 @@ scm_jobtemplates:
     inv: "w10"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/config_win10_vm.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "VMKey"
-    - "Vault"
+      - "VMKey"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "AnsibleFest Execution Environment"
   - name: "Lab3_config_ckp_jumbo_hotfix"
@@ -328,10 +336,10 @@ scm_jobtemplates:
     inv: "ckp-sms"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/config_ckp_jumbo_hotfix.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "VMKey"
-    - "Vault"
+      - "VMKey"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "AnsibleFest Execution Environment"
   - name: "Lab3_config_ckp_setting_api_sms"
@@ -340,10 +348,10 @@ scm_jobtemplates:
     inv: "ckp-sms"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/config_ckp_setting_api_sms.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "VMKey"
-    - "Vault"
+      - "VMKey"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "AnsibleFest Execution Environment"
   - name: "Lab3_config_add_simple_gw"
@@ -352,10 +360,10 @@ scm_jobtemplates:
     inv: "ckp-sms"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/config_ckp_add_simple_gw.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "VMKey"
-    - "Vault"
+      - "VMKey"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "AnsibleFest Execution Environment"
   - name: "Lab3_config_ckp_add_route_default_gw"
@@ -364,10 +372,10 @@ scm_jobtemplates:
     inv: "ckp-gw"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/config_ckp_add_route_default_gw.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "VMGW"
-    - "Vault"
+      - "VMGW"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "AnsibleFest Execution Environment"
   - name: "Lab4_config_ckp_sec_hosts"
@@ -376,10 +384,10 @@ scm_jobtemplates:
     inv: "ckp-sms"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/config_ckp_sec_hosts.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "VMKey"
-    - "Vault"
+      - "VMKey"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "Ansible Engine 2.9 execution environment"
   - name: "Lab4_config_ckp_sec_policies"
@@ -388,10 +396,10 @@ scm_jobtemplates:
     inv: "ckp-sms"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/config_ckp_sec_policies.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "VMKey"
-    - "Vault"
+      - "VMKey"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "Ansible Engine 2.9 execution environment"
   - name: "Lab4_app_deploy_jboss_server"
@@ -400,10 +408,10 @@ scm_jobtemplates:
     inv: "rhel1"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/app_deploy_jboss.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "VMKey"
-    - "Vault"
+      - "VMKey"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "AnsibleFest Execution Environment"
   - name: "Lab4_deploy_k8s"
@@ -412,10 +420,10 @@ scm_jobtemplates:
     inv: "rhel2"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/app_deploy_k8s.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "VMKey"
-    - "Vault"
+      - "VMKey"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "AnsibleFest Execution Environment"
   - name: "Lab4_deploy_app_ticketmonster"
@@ -424,10 +432,10 @@ scm_jobtemplates:
     inv: "rhel1"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/app_deploy_app_ticket.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "VMKey"
-    - "Vault"
+      - "VMKey"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "AnsibleFest Execution Environment"
   - name: "Lab4_app_deploy_etherpad_k8s"
@@ -436,10 +444,10 @@ scm_jobtemplates:
     inv: "rhel2"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/app_deploy_etherpad_k8s.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "VMKey"
-    - "Vault"
+      - "VMKey"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "AnsibleFest Execution Environment"
   - name: "Lab4_config_azure_route_table_for_apps"
@@ -448,11 +456,11 @@ scm_jobtemplates:
     inv: "Automation Controller Inventory"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/config_ckp_add_route_table.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "VMKey"
-    - "Vault"
-    - "azure_creds"
+      - "VMKey"
+      - "Vault"
+      - "azure_creds"
     ask_variables_on_launch: no
     execution_environment: "AnsibleFest Execution Environment"
   - name: "Lab5_deploy_nat_rules_for_apps"
@@ -461,10 +469,10 @@ scm_jobtemplates:
     inv: "ckp-sms"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/config_ckp_nat_rules.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "VMKey"
-    - "Vault"
+      - "VMKey"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "Ansible Engine 2.9 execution environment"
   - name: "Lab99_re_deploy_ckp_sms"
@@ -473,10 +481,23 @@ scm_jobtemplates:
     inv: "Automation Controller Inventory"
     project: "AnsibleFest2022 DevSecOps Project"
     playbook: "ansible/re_deploy_ckp_sms.yml"
-    extra_vars: { "lab_name": '{{ lab_name }}' }
+    extra_vars: { "lab_name": "{{ lab_name }}" }
     creds:
-    - "azure_creds"
-    - "Vault"
+      - "azure_creds"
+      - "Vault"
+    ask_variables_on_launch: no
+    execution_environment: "AnsibleFest Execution Environment"
+  - name: "Lab99_delete_azure_infra"
+    desc: "Lab99_delete_azure_infra"
+    org: Default
+    inv: "Automation Controller Inventory"
+    project: "AnsibleFest2022 DevSecOps Project"
+    playbook: "ansible/destroy_azure_infra.yml"
+    extra_vars: { "lab_name": "{{ lab_name }}" }
+    creds:
+      - "azure_creds"
+      - "VMKey"
+      - "Vault"
     ask_variables_on_launch: no
     execution_environment: "AnsibleFest Execution Environment"
 
@@ -490,7 +511,7 @@ scm_workflowjobtemplates:
     steps:
       - identifier: "Lab2_deploy_win10_vm"
         all_parents_must_converge: false
-        unified_job_template: 
+        unified_job_template:
           organization:
             name: Default
           name: Lab2_deploy_win10_vm
@@ -503,7 +524,7 @@ scm_workflowjobtemplates:
           credentials: []
       - identifier: "Lab2_deploy_ckp_sms"
         all_parents_must_converge: false
-        unified_job_template: 
+        unified_job_template:
           organization:
             name: Default
           name: Lab2_deploy_ckp_sms
@@ -517,7 +538,7 @@ scm_workflowjobtemplates:
           credentials: []
       - identifier: "Lab2_deploy_rhel_vm"
         all_parents_must_converge: false
-        unified_job_template: 
+        unified_job_template:
           organization:
             name: Default
           name: Lab2_deploy_rhel_vm
@@ -531,7 +552,7 @@ scm_workflowjobtemplates:
           credentials: []
       - identifier: "Lab2_deploy_ckp_gw"
         all_parents_must_converge: false
-        unified_job_template: 
+        unified_job_template:
           organization:
             name: Default
           name: Lab2_deploy_ckp_gw
@@ -549,7 +570,7 @@ scm_workflowjobtemplates:
     steps:
       - identifier: "Lab3_config_ckp_jumbo_hotfix"
         all_parents_must_converge: false
-        unified_job_template: 
+        unified_job_template:
           organization:
             name: Default
           name: Lab3_config_ckp_jumbo_hotfix
@@ -563,7 +584,7 @@ scm_workflowjobtemplates:
           credentials: []
       - identifier: "Lab3_config_ckp_setting_api_sms"
         all_parents_must_converge: false
-        unified_job_template: 
+        unified_job_template:
           organization:
             name: Default
           name: Lab3_config_ckp_setting_api_sms
@@ -595,7 +616,7 @@ scm_workflowjobtemplates:
           credentials: []
       - identifier: "Lab3_config_ckp_add_route_default_gw"
         all_parents_must_converge: false
-        unified_job_template: 
+        unified_job_template:
           organization:
             name: Default
           name: Lab3_config_ckp_add_route_default_gw
@@ -613,7 +634,7 @@ scm_workflowjobtemplates:
     steps:
       - identifier: "Lab4_app_deploy_jboss_server"
         all_parents_must_converge: false
-        unified_job_template: 
+        unified_job_template:
           organization:
             name: Default
           name: Lab4_app_deploy_jboss_server
@@ -627,7 +648,7 @@ scm_workflowjobtemplates:
           credentials: []
       - identifier: "Lab4_deploy_app_ticketmonster"
         all_parents_must_converge: false
-        unified_job_template: 
+        unified_job_template:
           organization:
             name: Default
           name: Lab4_deploy_app_ticketmonster
@@ -640,7 +661,7 @@ scm_workflowjobtemplates:
           credentials: []
       - identifier: "Lab4_deploy_k8s"
         all_parents_must_converge: false
-        unified_job_template: 
+        unified_job_template:
           organization:
             name: Default
           name: Lab4_deploy_k8s
@@ -654,7 +675,7 @@ scm_workflowjobtemplates:
           credentials: []
       - identifier: "Lab4_app_deploy_etherpad_k8s"
         all_parents_must_converge: false
-        unified_job_template: 
+        unified_job_template:
           organization:
             name: Default
           name: Lab4_app_deploy_etherpad_k8s
@@ -672,8 +693,8 @@ scm_workflowjobtemplates:
     steps:
       - identifier: "Lab4_config_ckp_sec_hosts"
         all_parents_must_converge: false
-        unified_job_template: 
-          organization: 
+        unified_job_template:
+          organization:
             name: Default
           name: Lab4_config_ckp_sec_hosts
           type: job_template
@@ -686,8 +707,8 @@ scm_workflowjobtemplates:
           credentials: []
       - identifier: "Lab4_config_ckp_sec_policies"
         all_parents_must_converge: false
-        unified_job_template: 
-          organization: 
+        unified_job_template:
+          organization:
             name: Default
           name: Lab4_config_ckp_sec_policies
           type: job_template
