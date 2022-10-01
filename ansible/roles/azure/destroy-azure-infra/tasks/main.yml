@@ -17,21 +17,3 @@
     force_delete_nonempty: yes
   loop:
     - "{{ gw_resgroup }}"
-
-- name: "Destroy Windows 10 Resource Group in Azure"
-  azure_rm_resourcegroup:
-    name: "{{ item }}"
-    location: "{{ location }}"
-    state: absent
-    force_delete_nonempty: yes
-  loop:
-    - "{{ win10_resgroup }}"
-
-- name: "Destroy RHEL Resource Group in Azure"
-  azure_rm_resourcegroup:
-    name: "{{ item }}"
-    location: "{{ location }}"
-    state: absent
-    force_delete_nonempty: yes
-  loop:
-    - "{{ rhel_resgroup }}"

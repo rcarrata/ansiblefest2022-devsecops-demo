@@ -1,13 +1,8 @@
 ---
 
-- name: Create resource group for RHEL
-  azure_rm_resourcegroup:
-    name: "{{ win10_resgroup }}"
-    location: "{{ location }}"
-
 - name: Create Network Security Group for Win10 VM
   azure_rm_securitygroup:
-    resource_group: "{{ win10_resgroup }}"
+    resource_group: "{{ main_resgroup }}"
     name: "{{ win10_net_seg_group }}"
     rules:
       - name: 'allow_rdp'
@@ -35,7 +30,7 @@
 
 - name: Create public IP address for Win10 VM
   azure_rm_publicipaddress:
-    resource_group: "{{ win10_resgroup }}"
+    resource_group: "{{ main_resgroup }}"
     allocation_method: Static
     name: "{{ win10_public_ip }}"
   register: output_ip_address
@@ -47,7 +42,7 @@
 - name: Create a network interface with public and private IP for Win10 VM
   azure_rm_networkinterface:
     name: "{{ win10_nic }}"
-    resource_group: "{{ win10_resgroup  }}"
+    resource_group: "{{ main_resgroup  }}"
     virtual_network: "{{ main_vnet_name }}"
     subnet_name: "{{ internal_subnet_name }}"
     security_group: "{{ win10_net_seg_group }}"
@@ -61,7 +56,7 @@
 
 - name: Create VM Windows10
   azure_rm_virtualmachine:
-    resource_group: "{{ win10_resgroup }}"
+    resource_group: "{{ main_resgroup }}"
     name: "{{ win10_vm_name }}"
     vm_size: "{{ win10_vm_size }}"
     admin_username: "{{ win10_username }}"
