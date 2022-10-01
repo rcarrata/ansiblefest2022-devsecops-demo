@@ -1,5 +1,4 @@
 ---
-
 - name: "Destroy Checkpoint SMS Resource Group in Azure"
   azure_rm_resourcegroup:
     name: "{{ item }}"
@@ -17,3 +16,74 @@
     force_delete_nonempty: yes
   loop:
     - "{{ gw_resgroup }}"
+
+# Azure RHEL infra is deleted using specific resource because shares the main RG of Tower
+# TODO: split the RGs for better deletion/management of the resources
+- name: Delete Network Security Group for RHEL
+  azure_rm_securitygroup:
+    resource_group: "{{ main_resgroup }}"
+    name: "{{ rhel_net_seg_group }}"
+    state: absent
+
+- name: Delete a network interface for RHEL with private IP address only
+  azure_rm_networkinterface:
+    name: "{{ item.nic }}"
+    resource_group: "{{ main_resgroup }}"
+    state: absent
+  loop: "{{ rhel }}"
+
+- name: Delete RHEL VM in Azure
+  azure_rm_virtualmachine:
+    resource_group: "{{ main_resgroup }}"
+    name: "{{ item.vm_name }}"
+    state: absent
+  loop: "{{ rhel }}"
+
+- name: Create Network Security Group for Win10 VM
+  azure_rm_securitygroup:
+    resource_group: "{{ main_resgroup }}"
+    name: "{{ win10_net_seg_group }}"
+    rules:
+      - name: "allow_rdp"
+        protocol: Tcp
+        destination_port_range: 3389
+        access: Allow
+        priority: 1001
+        direction: Inbound
+      - name: "allow_web_traffic"
+        protocol: Tcp
+        destination_port_range:
+          - 80
+          - 443
+        access: Allow
+        priority: 1002
+        direction: Inbound
+      - name: "allow_powershell_remoting"
+        protocol: Tcp
+        destination_port_range:
+          - 5985
+          - 5986
+        access: Allow
+        priority: 1003
+        direction: Inbound
+
+# Win10 is deleted using specific resource because shares the main RG of Tower
+# TODO: split the RGs for better deletion/management of the resources
+
+- name: Create public IP address for Win10 VM
+  azure_rm_publicipaddress:
+    resource_group: "{{ main_resgroup }}"
+    name: "{{ win10_public_ip }}"
+    state: absent
+
+- name: Create a network interface with public and private IP for Win10 VM
+  azure_rm_networkinterface:
+    name: "{{ win10_nic }}"
+    resource_group: "{{ main_resgroup  }}"
+    state: absent
+
+- name: Create VM Windows10
+  azure_rm_virtualmachine:
+    resource_group: "{{ main_resgroup }}"
+    name: "{{ win10_vm_name }}"
+    state: absent
