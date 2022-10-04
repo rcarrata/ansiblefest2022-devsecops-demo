@@ -29,7 +29,7 @@ route_table_name: "ansiblefest_{{ lab_name }}_route_table_Internet"
 
 ##### Azure CheckPoint SMS #####
 sms_resgroup: "ansiblefest_{{ lab_name }}_sms_rg"
-cloudGuardVersionsms: "R80.40 - Bring Your Own License"
+cloudGuardVersionsms: "R81.10 - Bring Your Own License"
 #adminPasswordsms: stored in vault
 authenticationTypesms: "password"
 vmNamesms: "chkpsmsansiblefest{{ lab_name }}"
@@ -59,7 +59,7 @@ jumbohotfix_pkg: "Check_Point_R80_30_JUMBO_HF_Bundle_T217_sk153152_Security_Mana
 
 ##### Azure CheckPoint Gateway #####
 gw_resgroup: "ansiblefest_{{ lab_name }}_gw_rg"
-cloudGuardVersiongw: "R80.40 - Bring Your Own License"
+cloudGuardVersiongw: "R81.10 - Bring Your Own License"
 #adminPasswordgw: stored in vault
 authenticationTypegw: "password"
 #vmNamegw: "chkpgwansiblefest{{ lab_name }}" TO REVERT
