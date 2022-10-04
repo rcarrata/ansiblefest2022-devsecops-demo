@@ -1,25 +1,37 @@
 ## Deployment of the prerequisites & the environment for the Lab
 
-## Automatic deployment - WIP
-
-```
-ansible-playbook pre_full_deploy_tower.yml    --vault-password-file .vault-password-file -e "lab_name=lab2"
-```
 
 ## Manual Deployment
 
-
-1. Deploy infra networking azure
+* Deploy Infra Networking Azure
 ```
-ansible-playbook pre_deploy_azure_infra.yml  --vault-password-file .vault-password-file -e "lab_name=lab2"
-```
-
-1. Deploy Tower VM Azure
-```
-ansible-playbook pre_deploy_tower_vm.yml  --vault-password-file .vault-password-file -e "lab_name=lab2"
+ansible-playbook pre_deploy_azure_infra.yml  --vault-password-file .vault-password-file -e "lab_name=lab1"
 ```
 
-1. Deploy preconfiguration tower
+* Deploy AAP VM Azure
 ```
-ansible-playbook pre_configure_tower.yml -i inventory/hosts  --vault-password-file .vault-password-file -e "lab_name=lab2" --tag="install"
+ansible-playbook pre_deploy_tower_vm.yml  --vault-password-file .vault-password-file -e "lab_name=lab1"
+```
+
+* Deploy preconfiguration AAP
+```
+ansible-playbook pre_configure_tower.yml -i inventory/hosts  --vault-password-file .vault-password-file -e "lab_name=lab1" --tag="install"
+```
+
+* [From AAP] Deploy DevSecOps infra lab with the WT - Lab2_Workflow_deploy_azure_ciberinfra
+
+  - deploy_win10_vm.yml
+  - deploy_rhel_vm.yml
+  - deploy_ckp_gw.yml
+  - deploy_ckp_sms.yml
+
+* [From AAP] 
+
+
+
+
+## Automatic deployment - WIP
+
+```
+ansible-playbook pre_full_deploy_tower.yml    --vault-password-file .vault-password-file -e "lab_name=lab1"
 ```

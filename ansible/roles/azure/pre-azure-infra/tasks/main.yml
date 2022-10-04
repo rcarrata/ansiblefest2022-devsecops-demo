@@ -1,38 +1,37 @@
 ---
-
-- name: Create main resource group
+- name: Create main resource group in Azure
   azure_rm_resourcegroup:
     name: "{{ main_resgroup }}"
     location: "{{ location }}"
 
-- name: Create main virtual network
+- name: Create main virtual network in Azure
   azure_rm_virtualnetwork:
     resource_group: "{{ main_resgroup }}"
     name: "{{ main_vnet_name }}"
     address_prefixes: "{{ vnet_ip }}"
 
-- name: Add subnet internal
+- name: Add subnet internal in Azure
   azure_rm_subnet:
     resource_group: "{{ main_resgroup }}"
     name: "{{ internal_subnet_name }}"
     address_prefix: "{{ internal_subnet_ip }}"
     virtual_network: "{{ main_vnet_name }}"
 
-- name: Add subnet internal DMZ
+- name: Add subnet internal DMZ in Azure
   azure_rm_subnet:
     resource_group: "{{ main_resgroup }}"
     name: "{{ internal_subnet_dmz_name }}"
     address_prefix: "{{ internal_subnet_dmz_ip }}"
     virtual_network: "{{ main_vnet_name }}"
 
-- name: Add subnet external
+- name: Add subnet external in Azure
   azure_rm_subnet:
     resource_group: "{{ main_resgroup }}"
     name: "{{ external_subnet_name }}"
     address_prefix: "{{ external_subnet_ip }}"
     virtual_network: "{{ main_vnet_name }}"
 
-- name: Add Azure BlobStorage Account
+- name: Add Azure BlobStorage Account in Azure
   azure_rm_storageaccount:
     resource_group: "{{ main_resgroup }}"
     name: "{{ storage_account_name }}"
@@ -42,4 +41,3 @@
     tags:
       name: ansiblefest
       delete: on-exit
-
