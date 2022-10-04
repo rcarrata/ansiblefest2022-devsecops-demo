@@ -17,8 +17,8 @@
     parameters:
       location:
         value: "{{ location }}"
-      # cloudGuardVersion:
-      #   value: "{{ cloudGuardVersionsms }}"
+      cloudGuardVersion:
+        value: "{{ cloudGuardVersionsms }}"
       adminPassword:
         value: "{{ adminPasswordsms }}"
       authenticationType:
