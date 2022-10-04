@@ -1,40 +1,40 @@
 ---
-
-- name: Install the Visual C++ Redistributable 2010
+- name: "Install the Visual C++ Redistributable 2010 to Win10 VM"
   win_package:
     path: https://{{ storage_account_name }}.blob.core.windows.net/{{ storage_container }}/vcredist_2010_x86.exe
-    product_id: '{196BB40D-1578-3D01-B289-BEFC77A11A1E}'
+    product_id: "{196BB40D-1578-3D01-B289-BEFC77A11A1E}"
     arguments: /install /passive /norestart
 
-- name: Install the Visual C++ Redistributable 2012
+- name: "Install the Visual C++ Redistributable 2012 to Win10VM"
   win_package:
     path: https://{{ storage_account_name }}.blob.core.windows.net/{{ storage_container }}/vcredist_2011_x86.exe
-    product_id: '{33d1fd90-4274-48a1-9bc1-97e33d9c2d6f}'
+    product_id: "{33d1fd90-4274-48a1-9bc1-97e33d9c2d6f}"
     arguments: /install /passive /norestart
 
-- name: Install the Visual C++ Redistributable 2017
+- name: "Install the Visual C++ Redistributable 2017 into Win10 VM"
   win_package:
     path: https://{{ storage_account_name }}.blob.core.windows.net/{{ storage_container }}/vcredist_2017_x86.exe
-    product_id: '{67f67547-9693-4937-aa13-56e296bd40f6}'
+    product_id: "{67f67547-9693-4937-aa13-56e296bd40f6}"
     arguments: /install /passive /norestart
 
-- name: Copy SmartConsole Install Script
+- name: "Copy SmartConsole Install Script to Win10 VM"
   win_copy:
     src: files/install.ps1
     dest: 'c:\\Users\\azureuser\\Desktop\\install_smartconsole.ps1'
     force: no
 
-- name: Copy Putty
+- name: "Copy Putty to Win10 VM"
   win_copy:
     src: files/putty.exe
     dest: 'c:\Users\azureuser\Desktop\putty.exe'
     force: no
 
-- name: Download Checkpoint SmartConsole
+- name: "Download Checkpoint SmartConsole into Win10 VM"
   win_get_url:
     url: "{{ win10_blob }}"
     dest: 'C:\Users\azureuser\Desktop\SmartConsole.exe'
 
-- win_shell: 'C:\\Users\\azureuser\\Desktop\\install_smartconsole.ps1'
-  become: yes
+- name: "Installing CheckPoint SmartConsole with the PS1 Script in Win10 VM"
+  win_shell: 'C:\\Users\\azureuser\\Desktop\\install_smartconsole.ps1'
+  become: true
   become_user: azureuser

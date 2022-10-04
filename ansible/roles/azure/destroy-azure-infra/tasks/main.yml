@@ -65,6 +65,7 @@
     name: "{{ win10_net_seg_group }}"
     state: absent
 
+# TO TEST
 - name: Delete a route that will be the App Gateway to the Checkpoint
   azure_rm_route:
     resource_group: "{{ main_resgroup }}"
@@ -76,9 +77,3 @@
     resource_group: "{{ main_resgroup }}"
     name: "{{ route_table }}"
     location: "{{ location }}"
-
-- name: Delete subnet internal DMZ and attach to the RouteTable
-  azure_rm_subnet:
-    resource_group: "{{ main_resgroup }}"
-    name: "{{ internal_subnet_dmz_name }}"
-    virtual_network: "{{ main_vnet_name }}"

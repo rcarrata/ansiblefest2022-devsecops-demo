@@ -42,8 +42,8 @@ For solve, the https://learn.microsoft.com/en-us/cli/azure/vm/image?view=azure-c
 
 ```bash
 az vm image accept-terms --urn checkpoint:check-point-cg-r8110:sg-byol:latest
+az vm image accept-terms --urn checkpoint:check-point-cg-r8110:mgmt-byol:latest
 ```
-
 
 
 

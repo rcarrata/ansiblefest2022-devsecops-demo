@@ -1,6 +1,6 @@
 # Deployment of the prerequisites & the environment for the Demo
 
-##
+## 1. Infra Azure
 
 * Deploy Infra Networking Azure
 ```
@@ -12,7 +12,7 @@ ansible-playbook pre_deploy_azure_infra.yml  --vault-password-file .vault-passwo
 ansible-playbook pre_deploy_tower_vm.yml  --vault-password-file .vault-password-file -e "lab_name=lab1"
 ```
 
-* Deploy preconfiguration AAP
+* Deploy pre-configuration AAP
 ```
 ansible-playbook pre_configure_tower.yml -i inventory/hosts  --vault-password-file .vault-password-file -e "lab_name=lab1" --tag="install"
 ```
@@ -23,6 +23,10 @@ ansible-playbook pre_configure_tower.yml -i inventory/hosts  --vault-password-fi
   - deploy_rhel_vm.yml
   - deploy_ckp_gw.yml
   - deploy_ckp_sms.yml
+
+NOTE: ensure that the route_table and the route forcing all the traffic to go to the CKP is not present.
+
+## 2. Configuration of Win10
 
 * [From RDP to Win10] Manual to allow the SSH from AAP
 
@@ -39,3 +43,16 @@ NOTE: Automate this!
 * [From AAP] Deploy DevSecOps infra lab with the WT - Lab3_config_win10_vm
 
   - config_win10_vm.yml
+
+## 3. Configuration of CheckPoint SMS + GW
+
+TBD
+
+## 4. Deployment and Config of RHELs (K8s + JBoss)
+
+* [From AAP] Deploy Applications into the RHEL systems - Lab4_1_Deploy_Applications_to_rhel_servers
+
+  - app_deploy_k8s.yml
+  - app_deploy_jboss.yml
+  - app_deploy_etherpad_k8s.yml
+  - app_deploy_app_ticket.yml
