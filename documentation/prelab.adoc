@@ -25,8 +25,21 @@ ansible-playbook pre_configure_tower.yml -i inventory/hosts  --vault-password-fi
   - deploy_ckp_gw.yml
   - deploy_ckp_sms.yml
 
-* [From AAP] 
+* [From RDP to Win10] Manual to allow the SSH from AAP
 
+```
+$url = "https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1"
+$file = "$env:temp\ConfigureRemotingForAnsible.ps1"
+(New-Object -TypeName System.Net.WebClient).DownloadFile($url, $file)
+powershell.exe -ExecutionPolicy ByPass -File $file
+Set-ExecutionPolicy RemoteSigned
+```
+
+NOTE: Automate this!
+
+* [From AAP] Deploy DevSecOps infra lab with the WT - Lab3_config_win10_vm
+
+  - config_win10_vm.yml
 
 
 

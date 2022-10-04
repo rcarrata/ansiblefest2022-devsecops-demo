@@ -62,8 +62,7 @@ gw_resgroup: "ansiblefest_{{ lab_name }}_gw_rg"
 cloudGuardVersiongw: "R81.10 - Bring Your Own License"
 #adminPasswordgw: stored in vault
 authenticationTypegw: "password"
-#vmNamegw: "chkpgwansiblefest{{ lab_name }}" TO REVERT
-vmNamegw: "add-simple-gateway"
+vmNamegw: "chkpgwansiblefest{{ lab_name }}"
 vmSizegw: "Standard_D3_v2"
 #sicKeyGW: stored in vault
 virtualNetworkNamegw: "{{ main_vnet_name }}"
@@ -249,7 +248,7 @@ scm_credentials:
     org: Default
     type: "Machine"
     inputs:
-      username: "admin"
+      username: "azureuser"
       password: "{{ password }}"
       become_method: sudo
   - name: "VMGW"

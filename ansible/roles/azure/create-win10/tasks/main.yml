@@ -1,17 +1,16 @@
 ---
-
 - name: Create Network Security Group for Win10 VM
   azure_rm_securitygroup:
     resource_group: "{{ main_resgroup }}"
     name: "{{ win10_net_seg_group }}"
     rules:
-      - name: 'allow_rdp'
+      - name: "allow_rdp"
         protocol: Tcp
         destination_port_range: 3389
         access: Allow
         priority: 1001
         direction: Inbound
-      - name: 'allow_web_traffic'
+      - name: "allow_web_traffic"
         protocol: Tcp
         destination_port_range:
           - 80
@@ -19,7 +18,7 @@
         access: Allow
         priority: 1002
         direction: Inbound
-      - name: 'allow_powershell_remoting'
+      - name: "allow_powershell_remoting"
         protocol: Tcp
         destination_port_range:
           - 5985
@@ -52,7 +51,6 @@
         primary: True
         private_ip_allocation_method: Static
         private_ip_address: "{{ win10_private_ip  }}"
-
 
 - name: Create VM Windows10
   azure_rm_virtualmachine:
