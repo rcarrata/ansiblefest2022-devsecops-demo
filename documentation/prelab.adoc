@@ -52,7 +52,7 @@ TBD
 
 * [From AAP] Deploy Applications into the RHEL systems - Lab4_1_Deploy_Applications_to_rhel_servers
 
-  - app_deploy_k8s.yml
+  - Lab4_deploy_k8s -> app_deploy_k8s.yml 
   - app_deploy_jboss.yml
   - app_deploy_etherpad_k8s.yml
   - app_deploy_app_ticket.yml
