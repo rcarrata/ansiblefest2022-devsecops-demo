@@ -21,7 +21,8 @@
         value: "{{ cloudGuardVersionsms }}"
       adminPassword:
         value: "{{ adminPasswordsms }}"
-      
+      # adminShell: {
+      #   value: "/bin/bash"
       authenticationType:
         value: "{{ authenticationTypesms }}"
       vmName:
@@ -45,7 +46,7 @@
       installationType:
         value: "{{ installationTypesms }}"
       allowDownloadFromUploadToCheckPoint:
-        value: 'true'
+        value: "true"
       additionalDiskSizeGB:
         value: 0
       diskType:
