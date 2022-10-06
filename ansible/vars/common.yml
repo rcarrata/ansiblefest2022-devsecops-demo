@@ -370,7 +370,7 @@ scm_jobtemplates:
       - "VMKey"
       - "Vault"
     ask_variables_on_launch: no
-    execution_environment: "AnsibleFest Execution Environment"
+    execution_environment: "Ansible Engine 2.9 execution environment"
   - name: "Lab3_config_ckp_setting_api_sms"
     desc: "lab4_config_ckp_setting_api_sms"
     org: Default
@@ -382,7 +382,7 @@ scm_jobtemplates:
       - "VMKey"
       - "Vault"
     ask_variables_on_launch: no
-    execution_environment: "AnsibleFest Execution Environment"
+    execution_environment: "Ansible Engine 2.9 execution environment"
   - name: "Lab3_config_add_simple_gw"
     desc: "Lab4_config_add_simple_gw"
     org: Default
@@ -394,7 +394,7 @@ scm_jobtemplates:
       - "VMKey"
       - "Vault"
     ask_variables_on_launch: no
-    execution_environment: "AnsibleFest Execution Environment"
+    execution_environment: "Ansible Engine 2.9 execution environment"
   - name: "Lab3_config_ckp_add_route_default_gw"
     desc: "Lab3_config_ckp_add_route_default_gw"
     org: Default
@@ -406,7 +406,7 @@ scm_jobtemplates:
       - "VMGW"
       - "Vault"
     ask_variables_on_launch: no
-    execution_environment: "AnsibleFest Execution Environment"
+    execution_environment: "Ansible Engine 2.9 execution environment"
   - name: "Lab4_config_ckp_sec_hosts"
     desc: "Lab4_config_ckp_sec_hosts"
     org: Default
