@@ -1,5 +1,4 @@
 ---
-
 ## NOTE: This automation code is originally developed, tested and provided by Diego Escobar (@dearevalillo) from CheckPoint
 ##       Many thanks to Diego for provide and test this code!
 
@@ -45,5 +44,5 @@
         security_zone_settings:
           specific_zone: "{{ simple_gw_eth1_specific_zone }}"
     auto_publish_session: true
-  no_log: true
+  no_log: false
   loop: "{{ cp_mgmt_simple_gateway_vars }}"

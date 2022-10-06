@@ -19,40 +19,30 @@ ansible-playbook pre_configure_tower.yml -i inventory/hosts  --vault-password-fi
 
 * [From AAP] Deploy DevSecOps infra lab with the WT - Lab2_Workflow_deploy_azure_ciberinfra
 
-  - deploy_win10_vm.yml
-  - deploy_rhel_vm.yml
-  - deploy_ckp_gw.yml
-  - deploy_ckp_sms.yml
+  - Lab2_deploy_win10_vm.yml -> deploy_win10_vm.yml
+  - Lab2_deploy_rhel_vm.yml  -> deploy_rhel_vm.yml
+  - Lab2_deploy_ckp_gw.yml   -> deploy_ckp_gw.yml
+  - Lab2_deploy_ckp_sms.yml  -> deploy_ckp_sms.yml
 
 NOTE: ensure that the route_table and the route forcing all the traffic to go to the CKP is not present.
 
 ## 2. Configuration of Win10
 
-* [From RDP to Win10] Manual to allow the SSH from AAP
-
-```
-$url = "https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1"
-$file = "$env:temp\ConfigureRemotingForAnsible.ps1"
-(New-Object -TypeName System.Net.WebClient).DownloadFile($url, $file)
-powershell.exe -ExecutionPolicy ByPass -File $file
-Set-ExecutionPolicy RemoteSigned
-```
-
-NOTE: Automate this!
-
 * [From AAP] Deploy DevSecOps infra lab with the WT - Lab3_config_win10_vm
 
-  - config_win10_vm.yml
+  - Lab3_config_win10_vm -> config_win10_vm.yml
 
 ## 3. Configuration of CheckPoint SMS + GW
 
-TBD
+Lab3_1_Workflow_config_sms_checkpoint_environment
+
+
 
 ## 4. Deployment and Config of RHELs (K8s + JBoss)
 
 * [From AAP] Deploy Applications into the RHEL systems - Lab4_1_Deploy_Applications_to_rhel_servers
 
   - Lab4_deploy_k8s -> app_deploy_k8s.yml 
-  - app_deploy_jboss.yml
-  - app_deploy_etherpad_k8s.yml
-  - app_deploy_app_ticket.yml
+  - Lab4_app_deploy_jboss.yml -> app_deploy_jboss.yml
+  - Lab4_ app_deploy_etherpad_k8s.yml app_deploy_etherpad_k8s.yml
+  - Lab4_ app_deploy_app_ticket.yml
