@@ -80,6 +80,36 @@ diskTypegw: "Standard_LRS"
 sourceImageVhdUrigw: "noCustomUri"
 template_linkgw: "https://raw.githubusercontent.com/CheckPointSW/CloudGuardIaaS/master/azure/templates/marketplace-single/mainTemplate.json"
 
+##### CheckPoint Add Simple Gateway Vars #####
+simple_gw_comments: "gw_rg01"
+simple_gw_anti_bot: true
+simple_gw_anti_virus: true
+simple_gw_appi_ctrl: true
+simple_gw_color: "blue"
+simple_gw_firewall: true
+simple_gw_ips: true
+simple_gw_sickey: vpn123,
+simple_gw_threat_emulation: false
+simple_gw_url_filtering: true
+simple_gw_gw_version: "R81.10"
+simple_gw_eth0_color: "red"
+simple_gw_eth0_comments: "Leads to Internet"
+simple_gw_eth0_ipv4: "192.168.233.104"
+simple_gw_eth0_ipv4_network_mask: "255.255.255.0"
+simple_gw_eth0_anti_spoofing: true
+simple_gw_eth0_topology: "External"
+simple_gw_eth0_security_zone: true
+simple_gw_eth0_specific_zone: "ExternalZone"
+simple_gw_eth1_color: "sea green"
+simple_gw_eth1_comments: "Leads to Web Frontend"
+simple_gw_eth1_ipv4: "10.101.1.4"
+simple_gw_eth1_ipv4_network_mask: "255.255.255.0"
+simple_gw_eth1_anti_spoofing: true
+simple_gw_eth1_topology: "Internal"
+simple_gw_eth1_topology_ip_behind_if: "network defined by the interface ip and net mask"
+simple_gw_eth1_security_zone: true
+simple_gw_eth1_specific_zone: "InternalZone"
+
 ##### Azure VM Win10 #####
 win10_resgroup: "ansiblefest_{{ lab_name }}_w10_rg"
 win10_net_seg_group: "nsg1_{{ lab_name }}"
@@ -100,7 +130,7 @@ win10_version: "19044.1889.220805" # Updated
 win10_blob: "https://{{ storage_account_name }}.blob.core.windows.net/{{ storage_container }}/{{ win10_ckp_smartconsole }}"
 win10_ckp_smartconsole: SmartConsole.exe
 
-##### Azure VM Tower #####
+##### Azure VM AAP Controller #####
 tower_public_ip: "tower_ip_{{ lab_name }}"
 tower_net_seg_group: "tower_nsg1_{{ lab_name }}"
 tower_nic: "tower_nic_{{ lab_name }}"

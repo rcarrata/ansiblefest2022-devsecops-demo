@@ -21,6 +21,7 @@
         value: "{{ cloudGuardVersionsms }}"
       adminPassword:
         value: "{{ adminPasswordsms }}"
+      
       authenticationType:
         value: "{{ authenticationTypesms }}"
       vmName:
