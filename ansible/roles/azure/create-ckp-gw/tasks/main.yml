@@ -21,8 +21,8 @@
                     value: "{{ cloudGuardVersiongw }}"
               adminPassword:
                     value: "{{ adminPasswordgw }}"
-              # adminShell: {
-              #   value: "/bin/bash"
+              adminShell:
+                    value: "/bin/bash"
               authenticationType:
                     value: password
               vmName:
