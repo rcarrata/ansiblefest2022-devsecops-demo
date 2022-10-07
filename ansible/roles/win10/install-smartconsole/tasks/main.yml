@@ -25,6 +25,12 @@
     script: |
       C:\\Users\\azureuser\\Desktop\\SmartConsole.exe -s
     executable: powershell.exe
+  become: yes
+  become_method: runas    
+  become_user: "{{ ansible_user }}"
+  become_flags: logon_type=interactive logon_flags=with_profile
+  vars:
+    ansible_become_pass: "{{ ansible_password }}"
 
 #- name: "Installing CheckPoint SmartConsole with the PS1 Script in Win10 VM"
 #  community.windows.psexec:
