@@ -1,5 +1,8 @@
 ---
 
+## NOTE: This automation code is originally developed, tested and provided by Diego Escobar (@dearevalillo) from CheckPoint
+##       Many thanks to Diego for provide and test this code!
+
 - name: Create a route table for change gateway to the app layer
   azure_rm_routetable:
     resource_group: "{{ main_resgroup }}"

@@ -1,4 +1,6 @@
 ---
+## NOTE: This automation code is originally developed, tested and provided by Diego Escobar (@dearevalillo) from CheckPoint
+##       Many thanks to Diego for provide and test this code!
 
 - name: "Add Kubernetes Services"
   check_point.mgmt.cp_mgmt_service_tcp:

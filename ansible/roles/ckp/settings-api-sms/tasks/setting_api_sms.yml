@@ -1,4 +1,6 @@
 ---
+## NOTE: This automation code is originally developed, tested and provided by Diego Escobar (@dearevalillo) from CheckPoint
+##       Many thanks to Diego for provide and test this code!
 
 - name: Wait for API to become available
   shell: bash -lc "api status" | awk '$0~/API Status/{print $4}'
