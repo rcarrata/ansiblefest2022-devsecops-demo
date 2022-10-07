@@ -2,8 +2,6 @@
 
 ## Priority
 
-- Test the new r80.40 or the latest version of the CheckPoint (SMS/GW) in Azure
-- Add Win10 with the RDP allow directly, for having the SSH without RDP and Powershell first
 - Document all the steps related to the lab
 - Change the manual commands in the Checkpoint to the new modules (add simple gw api, raw ckp commands, etc)
 - Add the DNS Zones delegation to af22.rcarrata.com
@@ -13,3 +11,8 @@
 - Add the MicroShift instead of k8s and manage with the k8s modules
 - Deploy the application (PacMan instead? or one of the IOL) in MicroShift
 - Modify the Azure and add force tunneling and proper Routing with Monitorization (NetObsv?, Azure Security Center?)
+
+## Done
+
+- Test the new r80.40 or the latest version of the CheckPoint (SMS/GW) in Azure
+- Add Win10 with the RDP allow directly, for having the SSH without RDP and Powershell first
