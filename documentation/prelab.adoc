@@ -34,9 +34,15 @@ NOTE: ensure that the route_table and the route forcing all the traffic to go to
 
 ## 3. Configuration of CheckPoint SMS + GW
 
-Lab3_1_Workflow_config_sms_checkpoint_environment
+* [From AAP] Config Checkpoint Secure Management Server Environment - Lab3_1_Workflow_config_sms_checkpoint_environment
 
+  - Lab3_config_ckp_jumbo_hotfix
+  - Lab3_config_ckp_setting_api_sms
 
+* [From AAP] Add Checkpoint Gateway to the Gateway SMS - Lab3_2_Workflow_config_gw_to_checkpoint_environment
+
+  - Lab3_config_add_simple_gw
+  - Lab3_config_ckp_add_route_default_gw
 
 ## 4. Deployment and Config of RHELs (K8s + JBoss)
 

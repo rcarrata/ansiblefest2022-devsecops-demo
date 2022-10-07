@@ -6,7 +6,7 @@
 - name: Add, set or delete simple-gateway
   check_point.mgmt.cp_mgmt_simple_gateway:
     state: present
-    name: "{{ gw_resgroup }}"
+    name: "{{ vmNamegw }}"
     comments: "{{ simple_gw_comments }}"
     anti_bot: "{{ simple_gw_anti_bot }}"
     anti_virus: "{{ simple_gw_anti_virus }}"
