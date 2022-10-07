@@ -6,9 +6,8 @@
 ##       Many thanks to Diego for provide and test this code!
 
 - name: "Wait Agent update finished"
-  shell: bash -lc "clish -c 'show installer status'"
-  args:
-    executable: /bin/bash
+  command: >
+    bash -lc "clish -c 'show installer status'"
   register: agent_install
   retries: 10
   delay: 5
