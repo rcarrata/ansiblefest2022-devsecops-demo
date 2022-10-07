@@ -21,7 +21,7 @@
 
 - name: "Decompress Checkpoint SmartConsole zip"
   community.windows.win_unzip:
-    src: 'C:\Program Files (x86)\CheckPoint\Check_Point_SmartConsole_R81_10_jumbo_HF_B409_Win_portable.zip'
+    src: 'C:\Program Files (x86)\CheckPoint\{{ win10_ckp_smartconsole }}'
     dest: 'C:\Program Files (x86)\CheckPoint'
     delete_archive: yes
 
