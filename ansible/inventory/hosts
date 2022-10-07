@@ -23,7 +23,7 @@ ansible_password = "{{ password }}"
 #ansible_ssh_port=5986
 
 [ckp-sms]
-ckp-sms ansible_host="20.111.56.6"
+ckp-sms ansible_host="20.111.45.84"
 
 [ckp-sms:vars]
 ansible_httpapi_use_ssl=True

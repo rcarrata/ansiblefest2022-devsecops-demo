@@ -5,13 +5,13 @@
 ## NOTE: This automation code is originally developed, tested and provided by Diego Escobar (@dearevalillo) from CheckPoint
 ##       Many thanks to Diego for provide and test this code!
 
-# - name: "Wait Agent update finished"
-#   command: >
-#     bash -lc "clish -c 'show installer status'"
-#   register: agent_install
-#   retries: 10
-#   delay: 5
-#   until: agent_install.stdout.find("agent build is up to date") != -1
+- name: "Wait Agent update finished"
+  command: >
+    clish -c 'show installer status'
+  register: agent_install
+  retries: 10
+  delay: 5
+  until: agent_install.stdout.find("agent build is up to date") != -1
 
 - name: "Download JHF T66"
   command: >
