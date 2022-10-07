@@ -9,18 +9,12 @@
     - vcredist2017
     - putty.install
 
-#- name: "Copy SmartConsole Install Script to Win10 VM"
-#  ansible.windows.win_copy:
-#    src: files/install.ps1
-#    dest: 'c:\\Users\\azureuser\\Desktop\\install_smartconsole.ps1'
-#    force: no
-
 - name: "Create Checkpoint SmartConsole directory"
   ansible.windows.win_file:
     path: 'C:\Program Files (x86)\CheckPoint'
     state: directory
 
-- name: "Download Checkpoint SmartConsole into Win10 VM"
+- name: "Download Checkpoint SmartConsole zip into Win10 VM"
   ansible.windows.win_get_url:
     url: "{{ win10_blob }}"
     dest: 'C:\Program Files (x86)\CheckPoint'
@@ -35,34 +29,3 @@
   community.windows.win_shortcut:
     src: 'C:\Program Files (x86)\CheckPoint\SmartConsole.exe'
     dest: 'C:\Users\azureuser\Desktop\SmartConsole.lnk'
-
-#- name: "Installing CheckPoint SmartConsole with the PS1 Script in Win10 VM"
-#  ansible.windows.win_powershell:
-#    script: |
-#      C:\\Users\\azureuser\\Desktop\\SmartConsole.exe -s
-#    executable: powershell.exe
-#  become: yes
-#  become_method: runas    
-#  become_user: "{{ ansible_user }}"
-#  become_flags: logon_type=interactive logon_flags=with_profile
-#  vars:
-#    ansible_become_pass: "{{ ansible_password }}"
-
-#- name: "Installing CheckPoint SmartConsole with the PS1 Script in Win10 VM"
-#  community.windows.psexec:
-#    hostname: '{{ hostvars[inventory_hostname]["ansible_host"] | default(inventory_hostname) }}'
-#    connection_username: "{{ ansible_user }}"
-#    connection_password: "{{ ansible_password }}"
-#    encrypt: no
-#    integrity_level: elevated
-#    process_username: "{{ ansible_user }}"
-#    process_password: "{{ ansible_password }}"
-#    executable: powershell.exe
-#    arguments: '-'
-#    stdin: |
-#      C:\\Users\\azureuser\\Desktop\\SmartConsole.exe -s
-#      exit
-#  delegate_to: localhost
-
-#- name: "Installing CheckPoint SmartConsole with the PS1 Script in Win10 VM"
-#  ansible.windows.win_shell: 'C:\\Users\\azureuser\\Desktop\\install_smartconsole.ps1'
