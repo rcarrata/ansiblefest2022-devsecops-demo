@@ -14,7 +14,7 @@
     color: "{{ simple_gw_color }}"
     firewall: "{{ simple_gw_firewall }}"
     ips: "{{ simple_gw_ips }}"
-    ipv4_address: "{{ simple_gw_eth0_ipv4 }}"
+    ipv4_address: "{{ Subnet1StartAddressgw }}"
     one_time_password: "{{ simple_gw_sickey }}"
     threat_emulation: "{{ simple_gw_threat_emulation }}"
     url_filtering: "{{ simple_gw_url_filtering }}"
@@ -23,7 +23,7 @@
       - name: eth0
         color: "{{ simple_gw_eth0_color}}"
         comments: "{{ simple_gw_eth0_comments }}"
-        ipv4_address: "{{ simple_gw_eth0_ipv4 }}"
+        ipv4_address: "{{ Subnet1StartAddressgw }}"
         ipv4_network_mask: "{{ simple_gw_eth0_ipv4_network_mask }}"
         anti_spoofing: "{{ simple_gw_eth0_anti_spoofing }}"
         topology: "{{ simple_gw_eth0_topology }}"
@@ -33,7 +33,7 @@
       - name: eth1
         color: "{{ simple_gw_eth1_color }}"
         comments: "{{ simple_gw_eth1_comments }}"
-        ipv4_address: "{{ simple_gw_eth1_ipv4 }}"
+        ipv4_address: "{{ Subnet2StartAddressgw }}"
         ipv4_network_mask: "{{ simple_gw_eth1_ipv4_network_mask }}"
         anti_spoofing: "{{ simple_gw_eth1_anti_spoofing }}"
         topology: "{{ simple_gw_eth1_topology }}"

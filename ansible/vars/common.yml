@@ -94,7 +94,7 @@ simple_gw_url_filtering: true
 simple_gw_gw_version: "R81.10"
 simple_gw_eth0_color: "red"
 simple_gw_eth0_comments: "Leads to Internet"
-simple_gw_eth0_ipv4: "192.168.233.104"
+# simple_gw_eth0_ipv4: "192.168.233.104"
 simple_gw_eth0_ipv4_network_mask: "255.255.255.0"
 simple_gw_eth0_anti_spoofing: true
 simple_gw_eth0_topology: "External"
@@ -102,7 +102,7 @@ simple_gw_eth0_security_zone: true
 simple_gw_eth0_specific_zone: "ExternalZone"
 simple_gw_eth1_color: "sea green"
 simple_gw_eth1_comments: "Leads to Web Frontend"
-simple_gw_eth1_ipv4: "10.101.1.4"
+# simple_gw_eth1_ipv4: "10.101.1.4"
 simple_gw_eth1_ipv4_network_mask: "255.255.255.0"
 simple_gw_eth1_anti_spoofing: true
 simple_gw_eth1_topology: "Internal"
