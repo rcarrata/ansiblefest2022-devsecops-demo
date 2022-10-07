@@ -128,7 +128,7 @@ win10_sku: "win10-21h2-pro"
 win10_version: "19044.1889.220805" # Updated
 
 win10_blob: "https://{{ storage_account_name }}.blob.core.windows.net/{{ storage_container }}/{{ win10_ckp_smartconsole }}"
-win10_ckp_smartconsole: SmartConsole.exe
+win10_ckp_smartconsole: Check_Point_SmartConsole_R81_10_jumbo_HF_B409_Win_portable.zip
 
 ##### Azure VM AAP Controller #####
 tower_public_ip: "tower_ip_{{ lab_name }}"

@@ -9,22 +9,38 @@
     - vcredist2017
     - putty.install
 
-- name: "Copy SmartConsole Install Script to Win10 VM"
-  ansible.windows.win_copy:
-    src: files/install.ps1
-    dest: 'c:\\Users\\azureuser\\Desktop\\install_smartconsole.ps1'
-    force: no
+#- name: "Copy SmartConsole Install Script to Win10 VM"
+#  ansible.windows.win_copy:
+#    src: files/install.ps1
+#    dest: 'c:\\Users\\azureuser\\Desktop\\install_smartconsole.ps1'
+#    force: no
+
+- name: "Create Checkpoint SmartConsole directory"
+  ansible.windows.win_file:
+    path: 'C:\Program Files (x86)\CheckPoint'
+    state: directory
 
 - name: "Download Checkpoint SmartConsole into Win10 VM"
   ansible.windows.win_get_url:
     url: "{{ win10_blob }}"
-    dest: 'C:\Users\azureuser\Desktop\SmartConsole.exe'
+    dest: 'C:\Program Files (x86)\CheckPoint'
 
-- name: "Installing CheckPoint SmartConsole with the PS1 Script in Win10 VM"
-  ansible.windows.win_powershell:
-    script: |
-      C:\\Users\\azureuser\\Desktop\\SmartConsole.exe -s
-    executable: powershell.exe
+- name: "Decompress Checkpoint SmartConsole zip"
+  community.windows.win_unzip:
+    src: 'C:\Program Files (x86)\CheckPoint\Check_Point_SmartConsole_R81_10_jumbo_HF_B409_Win_portable.zip'
+    dest: 'C:\Program Files (x86)\CheckPoint'
+    delete_archive: yes
+
+- name: "Create Checkpoint SmartConsole shortcut on the desktop"
+  community.windows.win_shortcut:
+    src: 'C:\Program Files (x86)\CheckPoint\Check_Point_SmartConsole_R81_10_jumbo_HF_B409_Win_portable\SmartConsole.exe'
+    dest: 'C:\Users\azureuser\Desktop\SmartConsole.lnk'
+
+#- name: "Installing CheckPoint SmartConsole with the PS1 Script in Win10 VM"
+#  ansible.windows.win_powershell:
+#    script: |
+#      C:\\Users\\azureuser\\Desktop\\SmartConsole.exe -s
+#    executable: powershell.exe
 #  become: yes
 #  become_method: runas    
 #  become_user: "{{ ansible_user }}"
