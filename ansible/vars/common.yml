@@ -88,7 +88,7 @@ simple_gw_appi_ctrl: true
 simple_gw_color: "blue"
 simple_gw_firewall: true
 simple_gw_ips: true
-simple_gw_sickey: vpn123,
+simple_gw_sickey: "vpn123"
 simple_gw_threat_emulation: false
 simple_gw_url_filtering: true
 simple_gw_gw_version: "R81.10"
