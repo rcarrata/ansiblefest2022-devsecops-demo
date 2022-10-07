@@ -20,31 +20,31 @@
     url: "{{ win10_blob }}"
     dest: 'C:\Users\azureuser\Desktop\SmartConsole.exe'
 
-- name: "Installing CheckPoint SmartConsole with the PS1 Script in Win10 VM"
-  ansible.windows.win_powershell:
-    script: |
-      C:\\Users\\azureuser\\Desktop\\SmartConsole.exe -s
-    executable: powershell.exe
-  become: yes
-  become_method: runas    
-  become_user: "{{ ansible_user }}"
-  become_flags: logon_type=interactive logon_flags=with_profile
-  vars:
-    ansible_become_pass: "{{ ansible_password }}"
-
 #- name: "Installing CheckPoint SmartConsole with the PS1 Script in Win10 VM"
-#  community.windows.psexec:
-#    # hostname: '{{ hostvars[inventory_hostname]["ansible_host"] | default(inventory_hostname) }}'
-#    hostname: w10
-#    connection_username: "{{ ansible_user }}"
-#    connection_password: "{{ ansible_password }}"
-#    encrypt: no
-#    integrity_level: elevated
-#    process_username: "{{ ansible_user }}"
-#    process_password: "{{ ansible_password }}"
-#    executable: C:\Users\azureuser\Desktop\SmartConsole.exe
-#    arguments: '-s'
-#  delegate_to: localhost
+#  ansible.windows.win_powershell:
+#    script: |
+#      C:\\Users\\azureuser\\Desktop\\SmartConsole.exe -s
+#    executable: powershell.exe
+#  become: yes
+#  become_method: runas    
+#  become_user: "{{ ansible_user }}"
+#  become_flags: logon_type=interactive logon_flags=with_profile
+#  vars:
+#    ansible_become_pass: "{{ ansible_password }}"
+
+- name: "Installing CheckPoint SmartConsole with the PS1 Script in Win10 VM"
+  community.windows.psexec:
+    # hostname: '{{ hostvars[inventory_hostname]["ansible_host"] | default(inventory_hostname) }}'
+    hostname: w10
+    connection_username: "{{ ansible_user }}"
+    connection_password: "{{ ansible_password }}"
+    encrypt: no
+    integrity_level: elevated
+    process_username: "{{ ansible_user }}"
+    process_password: "{{ ansible_password }}"
+    executable: C:\Users\azureuser\Desktop\SmartConsole.exe
+    arguments: '-s'
+  delegate_to: localhost
 
 #- name: "Installing CheckPoint SmartConsole with the PS1 Script in Win10 VM"
 #  ansible.windows.win_shell: 'C:\\Users\\azureuser\\Desktop\\install_smartconsole.ps1'
