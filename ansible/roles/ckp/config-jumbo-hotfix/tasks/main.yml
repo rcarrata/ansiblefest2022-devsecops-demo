@@ -7,7 +7,7 @@
 
 - name: "Wait Agent update finished"
   command: >
-    bash -lc "clish -c 'show installer status'"
+    "clish -c 'show installer status'"
   register: agent_install
   retries: 10
   delay: 5
