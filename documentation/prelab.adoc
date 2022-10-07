@@ -52,3 +52,9 @@ NOTE: ensure that the route_table and the route forcing all the traffic to go to
   - Lab4_app_deploy_jboss.yml -> app_deploy_jboss.yml
   - Lab4_ app_deploy_etherpad_k8s.yml app_deploy_etherpad_k8s.yml
   - Lab4_ app_deploy_app_ticket.yml
+
+* [From AAP] Deploy Hosts, Rules and Policies in Checkpoint SMS - Lab4_2_Workflow_deploy_security_policies
+
+  - Lab4_config_ckp_sec_hosts    ->  config_ckp_sec_hosts
+  - Lab4_config_ckp_sec_policies ->  config_ckp_sec_policies
+

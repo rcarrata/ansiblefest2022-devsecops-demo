@@ -14,7 +14,7 @@
     color: "{{ simple_gw_color }}"
     firewall: "{{ simple_gw_firewall }}"
     ips: "{{ simple_gw_ips }}"
-    ipv4_address: "{{ Subnet1StartAddressgw }}"
+    ipv4_address: "{{ Subnet2StartAddressgw }}"
     one_time_password: "{{ simple_gw_sickey }}"
     threat_emulation: "{{ simple_gw_threat_emulation }}"
     url_filtering: "{{ simple_gw_url_filtering }}"
