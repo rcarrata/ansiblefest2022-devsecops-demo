@@ -33,7 +33,7 @@
 
 - name: "Create Checkpoint SmartConsole shortcut on the desktop"
   community.windows.win_shortcut:
-    src: 'C:\Program Files (x86)\CheckPoint\Check_Point_SmartConsole_R81_10_jumbo_HF_B409_Win_portable\SmartConsole.exe'
+    src: 'C:\Program Files (x86)\CheckPoint\SmartConsole.exe'
     dest: 'C:\Users\azureuser\Desktop\SmartConsole.lnk'
 
 #- name: "Installing CheckPoint SmartConsole with the PS1 Script in Win10 VM"
