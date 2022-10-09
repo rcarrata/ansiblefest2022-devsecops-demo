@@ -1,5 +1,4 @@
 ---
-
 ## NOTE: This automation code is originally developed, tested and provided by Diego Escobar (@dearevalillo) from CheckPoint
 ##       Many thanks to Diego for provide and test this code!
 
@@ -14,10 +13,14 @@
 - name: "Download JHF T66"
   command: >
     bash -lc "clish -c 'installer download Check_Point_R81_10_JUMBO_HF_MAIN_Bundle_T66_FULL.tgz not-interactive'"
-  register: jhf_downloaded
-  retries: 40
-  delay: 10
-  until: jhf_downloaded.stdout.find("Available for Install") != -1
+  # register: jhf_downloaded
+  # retries: 40
+  # delay: 10
+  # until: jhf_downloaded.stdout.find("Available for Install") != -1
+
+- name: "Pause until the task is finished"
+  pause:
+    seconds: 400
 
 - name: "Verify Jumbo Hotfix package via Agent"
   command: >
