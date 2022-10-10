@@ -17,3 +17,6 @@ collections:
 
   - name: community.windows
     version: 1.9.0
+
+  - name: community.general
+    version: 5.7.0
