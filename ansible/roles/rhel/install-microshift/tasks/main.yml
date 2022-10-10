@@ -1,0 +1,82 @@
+---
+# tasks file for rhel/install-microshift/
+
+- name: Create OC directory if it does not exist
+  ansible.builtin.file:
+    path: /tmp/oc
+    state: directory
+    mode: '0755'
+
+- name: Download OC client
+  ansible.builtin.get_url:
+    url: https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/oc.tar.gz
+    dest: /tmp/oc
+    mode: '0440'
+
+- name: Extract OC tarball into /tmp/oc
+  ansible.builtin.unarchive:
+    src: /tmp/oc/oc.tar.gz
+    dest: /tmp/oc
+
+- name: Install OC binaries 
+  ansible.builtin.shell: install -t /usr/bin {kubectl,oc}
+  args:
+    chdir: /tmp/oc
+
+- name: Enable a RHOCP repository
+  community.general.rhsm_repository:
+    name: rhocp-4.8-for-rhel-8-x86_64-rpms
+    state: enabled
+
+- name: Install CRI-O packages
+  ansible.builtin.dnf:
+    name:
+      - cri-o
+      - conntrack
+      - cri-tools
+    state: latest
+
+- name: Enable service CRI-O and ensure it is not masked
+  ansible.builtin.systemd:
+    name: crio
+    enabled: yes
+    masked: no
+
+- name: Create Microshift manifests directory if it does not exist
+  ansible.builtin.file:
+    path: /var/lib/microshift/manifests
+    state: directory
+    mode: '0755'
+
+- name: Copy Microshift manifests into the manifests directory
+  ansible.builtin.template:
+    dest: "/var/lib/microshift/manifests/{{ item | basename | splitext | first }}"
+    group: root
+    src: "{{ item }}"
+    mode: 0644
+  with_fileglob:
+    - "*.j2"
+
+- name: Enable project Microshift nightly
+  community.general.copr:
+    state: enabled
+    name: '@redhat-et/microshift-nightly'
+
+- name: Install Microshift package
+  ansible.builtin.dnf:
+    name:
+      - microshift
+    state: latest
+
+- name: Enable service Microshift and ensure it is not masked
+  ansible.builtin.systemd:
+    name: microshift
+    enabled: yes
+    masked: no
+
+- name: Waiting on kubeconfig to be available
+  ansible.builtin.wait_for:
+    path: "{{ lookup('ansible.builtin.env', 'KUBEADMINDIR') }}/kubeconfig"
+    state: present
+  environment:
+    KUBEADMINDIR: /var/lib/microshift/resources/kubeadmin
