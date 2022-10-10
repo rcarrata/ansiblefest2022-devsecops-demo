@@ -7,16 +7,12 @@
     state: directory
     mode: '0755'
 
-- name: Download OC client
-  ansible.builtin.get_url:
-    url: https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/oc.tar.gz
-    dest: /tmp/oc
-    mode: '0440'
-
 - name: Extract OC tarball into /tmp/oc
   ansible.builtin.unarchive:
-    src: /tmp/oc/oc.tar.gz
+    src: https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/oc.tar.gz
     dest: /tmp/oc
+    remote_src: yes
+    list_files: yes
 
 - name: Install OC binaries 
   ansible.builtin.shell: install -t /usr/bin {kubectl,oc}
@@ -39,6 +35,7 @@
 - name: Enable service CRI-O and ensure it is not masked
   ansible.builtin.systemd:
     name: crio
+    state: started
     enabled: yes
     masked: no
 
@@ -55,12 +52,10 @@
     src: "{{ item }}"
     mode: 0644
   with_fileglob:
-    - "*.j2"
+    - "templates/*.j2"
 
 - name: Enable project Microshift nightly
-  community.general.copr:
-    state: enabled
-    name: '@redhat-et/microshift-nightly'
+  ansible.builtin.shell: dnf copr enable -y @redhat-et/microshift
 
 - name: Install Microshift package
   ansible.builtin.dnf:
@@ -71,12 +66,14 @@
 - name: Enable service Microshift and ensure it is not masked
   ansible.builtin.systemd:
     name: microshift
+    state: started
     enabled: yes
     masked: no
 
 - name: Waiting on kubeconfig to be available
   ansible.builtin.wait_for:
-    path: "{{ lookup('ansible.builtin.env', 'KUBEADMINDIR') }}/kubeconfig"
+    path: "{{ kubeadmindir }}/kubeconfig"
     state: present
-  environment:
-    KUBEADMINDIR: /var/lib/microshift/resources/kubeadmin
+  vars:
+    kubeadmindir: /var/lib/microshift/resources/kubeadmin
+    
