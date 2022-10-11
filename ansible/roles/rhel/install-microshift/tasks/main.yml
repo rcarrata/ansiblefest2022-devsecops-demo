@@ -54,7 +54,7 @@
   with_fileglob:
     - "templates/*.j2"
 
-- name: Enable project Microshift nightly
+- name: Enable project Microshift
   ansible.builtin.shell: dnf copr enable -y @redhat-et/microshift
 
 - name: Install Microshift package
@@ -76,4 +76,33 @@
     state: present
   vars:
     kubeadmindir: /var/lib/microshift/resources/kubeadmin
-    
+ 
+- name: Download Contour manifest
+  ansible.builtin.get_url:
+    url: https://projectcontour.io/quickstart/contour.yaml
+    dest: /var/lib/microshift/manifests/contour.yaml
+    mode: '0664'
+
+- name: Deploy ingress controller with Contour
+  block:
+    - name: Apply Contour manifest
+      kubernetes.core.k8s:
+        state: present
+        src: /var/lib/microshift/manifests/contour.yaml
+
+    - name: Patch Contour for accept ingress
+      kubernetes.core.k8s:
+        state: present
+        merge_type: merge
+        name: envoy
+        namespace: projectcontour
+        kind: DaemonSet
+        api_version: apps/v1
+        definition:
+          spec:
+            template:
+              spec:
+                nodeSelector:
+                  ingress-ready: "true"
+  environment:
+    KUBECONFIG: /var/lib/microshift/resources/kubeadmin/kubeconfig
