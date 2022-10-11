@@ -1,36 +1,100 @@
 ---
+# tasks file for rhel/deploy-etherpad/
 
-- name: Copy Objects
-  copy:
-    src: "templates/{{ item }}"
-    dest: "/opt/{{ item }}"
-  loop:
-    - ingress.yml
-    - deployment.yml
+- name: Deploy Etherpad on Microshift
+  block:
+    - name: Create Etherpad namespace
+      kubernetes.core.k8s:
+        definition:
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: etherpad
+        state: present
+ 
+    - name: Create ConfigMap for Etherpad
+      kubernetes.core.k8s:
+        definition:
+          api_version: v1
+          metadata:
+            name: etherpad
+            namespace: etherpad
+          kind: ConfigMap
+          data:
+            settings.json: |
+              {          
+                "skinName":"colibris",
+                "title":"Etherpad on Microshift"
+              }
+        state: present
 
-- name: 'Deploy Etherpad application deployment in K8s'
-  command: "kubectl -n default apply -f /opt/deployment.yml"
+    - name: Create NodePort for Etherpad
+      kubernetes.core.k8s:
+        definition:
+          api_version: v1
+          metadata:
+            name: etherpad
+            namespace: etherpad
+          kind: Service
+          spec:
+            type: NodePort
+            ports:
+            - name: web
+              port: 80
+              nodePort: 30080
+              targetPort: web
+            selector:
+              app: etherpad
+        state: present
 
-- name: 'Deploy Ingress Service for Etherpad application in K8s'
-  command: "kubectl -n default apply -f /opt/ingress.yml"
+    - name: Create Deployment for Etherpad
+      kubernetes.core.k8s:
+        definition:
+          api_version: apps/v1
+          metadata:
+            name: etherpad
+            namespace: etherpad
+          kind: Deployment
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
+                app: etherpad
+            template:
+              metadata:
+                labels:
+                  app: etherpad
+              spec:
+                containers:
+                - image: etherpad/etherpad:1.7.5
+                  name: etherpad
+                  ports:
+                  - containerPort: 9001
+                    name: web
+                  volumeMounts:
+                  - mountPath: /opt/etherpad/settings.json
+                    name: config
+                    subPath: settings.json
+                volumes:
+                - configMap:
+                    name: etherpad
+                  name: config
 
-- name: Wait until the pods are ok
-  pause:
-    seconds: 60
-
-## This is the k8s ansible modules
-#- name: 'Deploy Etherpad application deployment in K8s'
-#  k8s:
-#    state: present
-#    merge_type:
-#    - strategic-merge
-#    - merge
-#    definition: "{{ lookup('template', 'deployment.yml') }}"
-#
-#- name: 'Deploy Ingress Service for Etherpad application in K8s'
-#  k8s:
-#    state: present
-#    merge_type:
-#    - strategic-merge
-#    - merge
-#    definition: "{{ lookup('template', 'ingress.yml') }}"
+    - name: Wait till Etherpad deployment is ready
+      kubernetes.core.k8s_info:
+        api_version: apps/v1
+        kind: Deployment
+        name: etherpad
+        namespace: etherpad
+        wait: yes
+        wait_sleep: 10
+        wait_timeout: 360
+      register: etherpad_deployment_obj
+      until:
+       - etherpad_deployment_obj.resources[0].status.readyReplicas is defined
+       - "etherpad_deployment_obj.resources[0].status.replicas == \
+           etherpad_deployment_obj.resources[0].status.readyReplicas"
+      retries: 12
+      delay: 10
+  environment:
+    KUBECONFIG: /var/lib/microshift/resources/kubeadmin/kubeconfig
