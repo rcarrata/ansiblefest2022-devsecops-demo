@@ -1,23 +1,15 @@
 ---
 # tasks file for rhel/deploy-ticketapp/
 
-- name: Deploy ticket-monster application WAR to host
+- name: Copy ticket-monster application WAR to host
   ansible.builtin.copy:
     src: ticket-monster.war
-    dest: /opt/rh/eap7/root/usr/share/wildfly/standalone/deployments/
+    dest: /tmp/ticket-monster.war
+    mode: '0644'
 
-#- name: "Unzip WAR file"
-#  unarchive:
-#    src: "/tmp/ticket-monster.war"
-#    dest: "/usr/share/tomcat/webapps/ROOT/"
-#    copy: no
-#    mode: 0755
-#    owner: tomcat
-#    group: tomcat
-#  notify: restart tomcat
-
-#- name: "Not use firewalld"
-#  service:
-#    name: firewalld
-#    state: stopped
-#    enabled: False
+- name: Deploy ticket-monster application WAR to host
+  community.general.jboss:
+    src: /tmp/ticket-monster.war
+    deploy_path: /opt/rh/eap7/root/usr/share/wildfly/standalone/deployments
+    deployment: ticket-monster.war
+    state: present
