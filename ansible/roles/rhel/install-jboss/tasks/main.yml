@@ -1,89 +1,107 @@
 ---
+# tasks file for rhel/install-jboss/
 
-- name: "Download EPEL Repo - Centos/RHEL 7"
-  get_url:
-    url: "http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
-    dest: "/tmp/epel-release-latest-7.noarch.rpm"
-  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
+- name: Enable a JBoss EAP repository
+  community.general.rhsm_repository:
+    name: jb-eap-7.4-for-rhel-8-x86_64-rpms
+    state: enabled
 
-- name: "Install EPEL Repo - RHEL 7"
-  command: "rpm -ivh /tmp/epel-release-latest-7.noarch.rpm"
-  args:
-    creates: "/etc/yum.repos.d/epel.repo"
-  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
+- name: Install JBoss EAP and JDK 11
+  ansible.builtin.dnf:
+    name:
+      - '@jboss-eap7-jdk11'
+    state: latest
 
-- name: "Install jboss dependencies"
-  yum:
-    name: "{{ item  }}"
-  loop:
-    - libselinux-python
-    - unzip
+- name: Correct Java version selected
+  community.general.alternatives:
+    name: java
+    path: /usr/lib/jvm/java-11-openjdk-11.0.16.1.1-1.el8_6.x86_64/bin/java
 
-- name: "Install Java 1.7"
-  yum:
-    name: java-1.7.0-openjdk
-    state: present
-
-- name: "Add group jboss"
-  group:
-    name: tomcat
-
-- name: "Add user jboss"
-  user:
-    name: "tomcat"
-    group: "tomcat"
-    home: "/usr/share/tomcat"
-    createhome: no
-  become: True
-  become_method: sudo
-
-- name: "Download JBOSS standalone"
-  get_url:
-    url: "http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.61/bin/apache-tomcat-7.0.61.tar.gz"
-    dest: "/opt/apache-tomcat-7.0.61.tar.gz"
-
-- name: "Extract archive"
-  command: chdir=/usr/share /bin/tar xvf /opt/apache-tomcat-7.0.61.tar.gz -C /opt/ creates=/opt/apache-tomcat-7.0.61
-
-- name: "Symlink install directory"
-  file:
-    src: "/opt/apache-tomcat-7.0.61"
-    path: "/usr/share/tomcat"
-    state: link
-
-- name: "Change ownership of JBOSS installation"
-  file:
-    path: "/usr/share/tomcat/"
-    owner: tomcat
-    group: tomcat
-    state: directory
-    recurse: yes
-
-- name: "Configure JBOSS server"
-  template:
-    src: "server.xml"
-    dest: "/usr/share/tomcat/conf/"
-  notify: restart tomcat
-
-- name: "Configure JBOSS users"
-  template:
-    src: "tomcat-users.xml"
-    dest: "/usr/share/tomcat/conf/"
-  notify: restart tomcat
-
-- name: "Install JBOSS init script"
-  copy:
-    src: "tomcat-initscript.sh"
-    dest: "/etc/init.d/tomcat"
-    mode: 0755
-
-- name: "Start JBOSS"
-  service:
-    name: tomcat
+- name: Enable service JBoss EAP Standalone and ensure it is not masked
+  ansible.builtin.systemd:
+    name: eap7-standalone
     state: started
     enabled: yes
+    masked: no
 
-- name: "Wait for JBOSS to start"
-  wait_for:
-    port: "{{http_port}}"
+# - name: "Download EPEL Repo - Centos/RHEL 7"
+#   get_url:
+#     url: "http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
+#     dest: "/tmp/epel-release-latest-7.noarch.rpm"
+#   when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
 
+# - name: "Install EPEL Repo - RHEL 7"
+#   command: "rpm -ivh /tmp/epel-release-latest-7.noarch.rpm"
+#   args:
+#     creates: "/etc/yum.repos.d/epel.repo"
+#   when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
+
+# - name: "Install jboss dependencies"
+#   yum:
+#     name: "{{ item  }}"
+#   loop:
+#     - libselinux-python
+#     - unzip
+
+#- name: "Add group jboss"
+#  group:
+#    name: tomcat
+
+#- name: "Add user jboss"
+#  user:
+#    name: "tomcat"
+#    group: "tomcat"
+#    home: "/usr/share/tomcat"
+#    createhome: no
+#  become: True
+#  become_method: sudo
+
+#- name: "Download JBOSS standalone"
+#  get_url:
+#    url: "http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.61/bin/apache-tomcat-7.0.61.tar.gz"
+#    dest: "/opt/apache-tomcat-7.0.61.tar.gz"
+
+#- name: "Extract archive"
+#  command: chdir=/usr/share /bin/tar xvf /opt/apache-tomcat-7.0.61.tar.gz -C /opt/ creates=/opt/apache-tomcat-7.0.61
+
+#- name: "Symlink install directory"
+#  file:
+#    src: "/opt/apache-tomcat-7.0.61"
+#    path: "/usr/share/tomcat"
+#    state: link
+
+#- name: "Change ownership of JBOSS installation"
+#  file:
+#    path: "/usr/share/tomcat/"
+#    owner: tomcat
+#    group: tomcat
+#    state: directory
+#    recurse: yes
+
+#- name: "Configure JBOSS server"
+#  template:
+#    src: "server.xml"
+#    dest: "/usr/share/tomcat/conf/"
+#  notify: restart tomcat
+
+#- name: "Configure JBOSS users"
+#  template:
+#    src: "tomcat-users.xml"
+#    dest: "/usr/share/tomcat/conf/"
+#  notify: restart tomcat
+
+#- name: "Install JBOSS init script"
+#  copy:
+#    src: "tomcat-initscript.sh"
+#    dest: "/etc/init.d/tomcat"
+#    mode: 0755
+
+#- name: "Start JBOSS"
+#  service:
+#    name: tomcat
+#    state: started
+#    enabled: yes
+
+#- name: "Wait for JBOSS to start"
+#  wait_for:
+#    port: "{{http_port}}"
