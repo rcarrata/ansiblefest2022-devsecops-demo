@@ -106,7 +106,8 @@ simple_gw_eth1_comments: "Leads to Web Frontend"
 simple_gw_eth1_ipv4_network_mask: "255.255.255.0"
 simple_gw_eth1_anti_spoofing: true
 simple_gw_eth1_topology: "Internal"
-simple_gw_eth1_topology_ip_behind_if: "network defined by the interface ip and net mask"
+#simple_gw_eth1_topology_ip_behind_if: "network defined by the interface ip and net mask"
+simple_gw_eth1_topology_ip_behind_if: "network defined by routing"
 simple_gw_eth1_security_zone: true
 simple_gw_eth1_specific_zone: "InternalZone"
 

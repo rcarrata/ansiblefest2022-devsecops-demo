@@ -45,3 +45,33 @@
           specific_zone: "{{ simple_gw_eth1_specific_zone }}"
     auto_publish_session: true
   no_log: false
+
+#- name: "Add Gateway" #Call add-simple-gateway-old-school.yml
+#  cp_mgmt_simple_gateway:
+#    name: "chkpgwansiblefest"
+#    ipv4_address: "172.16.1.254"
+#    os_name: "R80.30"
+#    anti_bot: 'true'
+#    anti_virus: 'true'
+#    application_control: 'true'
+#    firewall: 'true'
+#    ips: 'true'
+#    one_time_password: "4ns1bl3"
+#    url_filtering: 'true'
+#    interfaces:
+#     - name: 'eth0'
+#       ipv4-address: "172.16.0.254"
+#       ipv4-mask-length: "24"
+#       anti-spoofing: 'true'
+#       topology: 'external'
+#
+#     - name: 'eth1'
+#       ipv4-address: "172.16.1.254"
+#       ipv4-mask-length: "24"
+#       anti-spoofing: 'true'
+#       topology: 'internal'
+#       topology-settings:
+#         ip-address-behind-this-interface: 'network defined by routing'
+#    state: present
+#    auto_publish_session: yes
+
