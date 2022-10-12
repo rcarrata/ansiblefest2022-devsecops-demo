@@ -1,7 +1,7 @@
 ---
 # tasks file for rhel/install-jboss/
 
-- name: "Install Java 1.7"
+- name: "Install Java 1.8"
   yum:
     name: java-1.8.0-openjdk
     state: present
@@ -21,7 +21,7 @@
 
 - name: "Download JBOSS standalone"
   get_url:
-    url: "http://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.24/bin/apache-tomcat-9.0.24.tar.gz"
+    url: "http://archive.apache.org/dist/tomcat/tomcat-9/v9.0.24/bin/apache-tomcat-9.0.24.tar.gz"
     dest: "/opt/apache-tomcat-9.0.24.tar.gz"
 
 - name: "Extract archive"
