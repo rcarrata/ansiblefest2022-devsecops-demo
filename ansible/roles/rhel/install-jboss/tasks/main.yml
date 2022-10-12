@@ -21,15 +21,15 @@
 
 - name: "Download JBOSS standalone"
   get_url:
-    url: "http://archive.apache.org/dist/tomcat/tomcat-9/v9.0.24/bin/apache-tomcat-9.0.24.tar.gz"
-    dest: "/opt/apache-tomcat-9.0.24.tar.gz"
+    url: "http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.61/bin/apache-tomcat-7.0.61.tar.gz"
+    dest: "/opt/apache-tomcat-7.0.61.tar.gz"
 
 - name: "Extract archive"
-  command: chdir=/usr/share /bin/tar xvf /opt/apache-tomcat-9.0.24.tar.gz -C /opt/ creates=/opt/apache-tomcat-9.0.24
+  command: chdir=/usr/share /bin/tar xvf /opt/apache-tomcat-7.0.61.tar.gz -C /opt/ creates=/opt/apache-tomcat-7.0.61
 
 - name: "Symlink install directory"
   file:
-    src: "/opt/apache-tomcat-9.0.24"
+    src: "/opt/apache-tomcat-7.0.61"
     path: "/usr/share/tomcat"
     state: link
 
