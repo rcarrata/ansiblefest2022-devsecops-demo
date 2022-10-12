@@ -160,11 +160,10 @@ rhel_net_seg_group: "rhel_nsg_{{ lab_name }}"
 rhel_vm_size: "Standard_DS1_v2"
 rhel_username: azureuser
 
-# TODO: Change the RHEL7 for RHEL8 and adjust the roles.
 rhel_offer: "RHEL"
 rhel_publisher: "RedHat"
-rhel_sku: "7-LVM"
-rhel_version: "latest"
+rhel_sku: "8_6"
+rhel_version: "8.6.2022070801"
 
 ##### Ansible Automation Platform Configuration
 aap_host: "https://{{ aap_vault_host }}"
