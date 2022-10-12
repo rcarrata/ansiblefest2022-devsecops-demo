@@ -1,6 +1,10 @@
 ---
 # tasks file for rhel/deploy-etherpad/
 
+- name: Install bottle python package
+  ansible.builtin.pip:
+    name: kubernetes
+
 - name: Deploy Etherpad on Microshift
   block:
     - name: Create Etherpad namespace
@@ -11,7 +15,7 @@
           metadata:
             name: etherpad
         state: present
- 
+
     - name: Create ConfigMap for Etherpad
       kubernetes.core.k8s:
         definition:
@@ -22,7 +26,7 @@
           kind: ConfigMap
           data:
             settings.json: |
-              {          
+              {
                 "skinName":"colibris",
                 "title":"Etherpad on Microshift"
               }
