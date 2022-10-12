@@ -12,6 +12,16 @@
     #protocol: tcp
     wait_for_task: yes
 
+- name: "Add Kubernetes Services"
+  check_point.mgmt.cp_mgmt_service_tcp:
+    name: "MicroShift"
+    port: 30080
+    state: present
+    color: red
+    auto_publish_session: yes
+    #protocol: tcp
+    wait_for_task: yes
+
 - name: "Add JBoss Services"
   check_point.mgmt.cp_mgmt_service_tcp:
     name: "JBoss_Services"
@@ -55,7 +65,7 @@
     original_source: Any
     original_service: Kubernetes_Services
     translated_destination: "{{ item.1.vm_name }}"
-    translated_service: http
+    translated_service: MicroShift
     translated_source: Original
     method: hide
     package: "Ansible_Fest_Package"
