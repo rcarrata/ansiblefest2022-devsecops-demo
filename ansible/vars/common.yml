@@ -238,7 +238,7 @@ hosts:
 
 execution_enviroment:
   - name: "AnsibleFest Execution Environment"
-    desc: "quay.io/ansiblefest2022/ee-ansiblefest-image:1.0.0"
+    desc: "quay.io/ansiblefest2022/ee-ansiblefest-image:1.0.1"
 
 scm_custom_credential_types: []
 
