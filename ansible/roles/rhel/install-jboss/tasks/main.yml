@@ -39,8 +39,9 @@
     enabled: yes
     masked: no
 
-- name: Permit traffic in default zone on port 8080/tcp
-  ansible.posix.firewalld:
-    port: 8080/tcp
-    permanent: yes
-    state: enabled
+- name: Stop service Firewalld and ensure it is masked
+  ansible.builtin.systemd:
+    name: firewalld
+    state: stopped
+    enabled: no
+    masked: yes
